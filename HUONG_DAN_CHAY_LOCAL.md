@@ -20,19 +20,29 @@ Trước khi chạy dự án, hãy tải và cài đặt 3 công cụ sau lên m
 ## 📁 2. Tải Dự Án & Thiết Lập Cấu Hình (Từng Bước Một)
 
 ### Bước 1: Tải mã nguồn dự án về máy
-Bạn có thể chọn **1 trong 2 cách** sau:
 
-* **Cách A (Nếu KHÔNG biết dùng Git):**
-  1. Truy cập vào trang GitHub chứa dự án.
-  2. Bấm vào nút màu xanh lá **Code** ở góc trên bên phải.
-  3. Chọn **Download ZIP**.
-  4. Sau khi tải xong, click chuột phải vào file `.zip` vừa tải về, chọn **Extract Here** (hoặc Giải nén) ra một thư mục trên máy tính.
+Để lấy mã nguồn dự án, đầu tiên bạn cần **lấy đường link dự án trên GitHub**:
+1. Truy cập trang GitHub chứa dự án.
+2. Bấm vào nút màu xanh lá **Code** ở góc trên bên phải.
+3. Ở tab **Local** -> mục **HTTPS**, bạn sẽ thấy một đường dẫn (ví dụ: `https://github.com/.../Finvista.git`).
+4. Bấm vào **biểu tượng Copy** (hình hai hình chữ nhật chồng lên nhau) ở ngay bên cạnh đường dẫn để sao chép đường link này.
 
-* **Cách B (Nếu biết dùng Git):**
-  1. Mở Command Prompt (cmd) hoặc Terminal trên máy.
-  2. Di chuyển đến thư mục bạn muốn lưu dự án rồi chạy lệnh:
+Sau đó, chọn **1 trong 2 cách** sau để tải dự án về máy:
+
+* **Cách A (Nếu KHÔNG biết dùng Git - Nhanh nhất):**
+  1. Cũng tại nút xanh lá **Code** ở trên, bạn chọn **Download ZIP** ở dưới cùng danh sách.
+  2. Sau khi tải xong file `.zip`, click chuột phải vào file đó, chọn **Extract Here** (hoặc Giải nén tại đây) ra một thư mục trên máy tính của bạn.
+
+* **Cách B (Nếu biết sử dụng Git):**
+  1. Mở thư mục trên máy tính nơi bạn muốn lưu trữ dự án (ví dụ: thư mục `Downloads` hoặc ổ đĩa `D:\`, `E:\`...).
+  2. Click chuột trái vào **thanh địa chỉ** ở trên cùng của thư mục đó (nơi hiển thị đường dẫn thư mục), gõ chữ `cmd` rồi nhấn **Enter** (giống hình ảnh hướng dẫn).
+  3. Cửa sổ Command Prompt (bảng đen) sẽ tự động hiện lên tại đúng thư mục đó.
+  4. Gõ lệnh dưới đây và nhấn **Enter** (Chuột phải vào màn hình đen để dán đường link bạn vừa copy ở trên):
      ```bash
-     git clone <ĐƯỜNG_LINK_GITHUB_DỰ_ÁN>
+     git clone <ĐƯỜNG_LINK_VỪA_COPY_Ở_TRÊN>
+     ```
+  5. Sau khi quá trình tải chạy xong, gõ tiếp lệnh sau để di chuyển vào thư mục dự án:
+     ```bash
      cd Finvista
      ```
 
