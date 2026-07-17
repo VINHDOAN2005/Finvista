@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { Bot, MessageSquare, Send, Trash2, User, X } from "lucide-react";
-import { chatCompletion } from "../../api.js";
+import { chatCompletion, getWarrantHistory } from "../../api.js";
+import { InteractiveLineChart } from "../charts/WarrantCharts.jsx";
 import { Button } from "../ui/button.jsx";
 import { Input } from "../ui/input.jsx";
 
@@ -221,7 +222,157 @@ function parseInline(text) {
   return <span dangerouslySetInnerHTML={{ __html: processed }} />;
 }
 
-function parseTextAndTables(text, onFollowUp) {
+const chartCache = {};
+
+function WarrantChatChart({ symbol, language = "vi" }) {
+  const [history, setHistory] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const isEnglish = language === "en";
+
+  const fetchChartData = useCallback((force = false) => {
+    if (!symbol) return;
+    setLoading(true);
+    setError("");
+    
+    const cacheKey = symbol.toUpperCase();
+    const cached = chartCache[cacheKey];
+    const now = Date.now();
+    
+    if (!force && cached && now - cached.timestamp < 5 * 60 * 1000) {
+      setHistory(cached.data);
+      setLoading(false);
+      return;
+    }
+    
+    getWarrantHistory(symbol.toUpperCase(), 60)
+      .then((data) => {
+        chartCache[cacheKey] = {
+          data,
+          timestamp: Date.now()
+        };
+        setHistory(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, [symbol]);
+
+  useEffect(() => {
+    fetchChartData(false);
+  }, [fetchChartData]);
+
+  const handleRefresh = (e) => {
+    e.stopPropagation();
+    fetchChartData(true);
+  };
+
+  if (loading && !history) {
+    return (
+      <div style={{ padding: "1rem", textAlign: "center", fontSize: "0.8rem", color: "var(--text-muted, #94a3b8)" }}>
+        <span className="dot-loader"></span>
+        <span className="dot-loader" style={{ animationDelay: "0.2s" }}></span>
+        <span className="dot-loader" style={{ animationDelay: "0.4s" }}></span>
+        <span style={{ marginLeft: "0.5rem" }}>{isEnglish ? "Loading chart data..." : "Đang tải dữ liệu biểu đồ..."}</span>
+      </div>
+    );
+  }
+
+  if (error || !history || !history.history || history.history.length === 0) {
+    return (
+      <div style={{ padding: "0.5rem", fontSize: "0.75rem", color: "#ef4444", background: "rgba(239, 68, 68, 0.08)", borderRadius: "4px" }}>
+        {isEnglish ? `Could not load chart for ${symbol}` : `Không thể tải biểu đồ cho ${symbol}`}
+      </div>
+    );
+  }
+
+  const historyRows = history.history;
+  const rawPricePoints = (accessor) => {
+    return historyRows.map((row) => ({
+      date: row.date,
+      value: accessor(row)
+    }));
+  };
+
+  const isStock = history.averages?.valuation_assessment === "STOCK" || historyRows.every(r => r.warrant_price === 0);
+
+  const chartSeries = [];
+  if (!isStock) {
+    chartSeries.push({
+      key: "cw",
+      label: isEnglish ? "CW price" : "Giá CW",
+      color: "#ec4899",
+      valueSuffix: " VND",
+      scaleMode: "relative-visible",
+      points: rawPricePoints((row) => row.warrant_price)
+    });
+  }
+  chartSeries.push({
+    key: "underlying",
+    label: isStock ? (isEnglish ? "Stock Price" : "Giá cổ phiếu") : (isEnglish ? "Underlying price" : "Giá cơ sở"),
+    color: "#3b82f6",
+    valueSuffix: isStock ? " đ" : " VND",
+    scaleMode: isStock ? "absolute" : "relative-visible",
+    points: rawPricePoints((row) => row.underlying_price)
+  });
+
+  return (
+    <div className="warrant-chat-chart-container" style={{
+      background: "var(--bg-card, rgba(255, 255, 255, 0.03))",
+      border: "1px solid var(--border-color, rgba(255, 255, 255, 0.08))",
+      borderRadius: "8px",
+      padding: "0.6rem 0.8rem",
+      margin: "0.5rem 0",
+      width: "100%",
+      boxSizing: "border-box",
+      overflow: "hidden"
+    }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
+        <span style={{ fontSize: "0.8rem", fontWeight: "600", color: "var(--text-main, #ffffff)" }}>
+          {isStock 
+            ? (isEnglish ? `Stock Chart - ${symbol}` : `Biểu đồ cổ phiếu - ${symbol}`) 
+            : (isEnglish ? `Interactive Chart - ${symbol}` : `Biểu đồ tương tác - ${symbol}`)}
+        </span>
+        <button
+          onClick={handleRefresh}
+          disabled={loading}
+          className="chart-refresh-btn"
+          title={isEnglish ? "Refresh chart data" : "Làm mới dữ liệu"}
+        >
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            style={{
+              animation: loading ? "spin 1s linear infinite" : "none"
+            }}
+          >
+            <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
+          </svg>
+        </button>
+      </div>
+      <div className="chat-chart-wrapper" style={{ height: "auto", position: "relative" }}>
+        <InteractiveLineChart
+          title=""
+          subtitle=""
+          series={chartSeries}
+          language={language}
+          valueSuffix={isStock ? " đ" : "%"}
+          height={320}
+        />
+      </div>
+    </div>
+  );
+}
+
+function parseTextAndTables(text, onFollowUp, language = "vi") {
   const lines = text.split("\n");
   const elements = [];
   let currentTable = null;
@@ -229,11 +380,14 @@ function parseTextAndTables(text, onFollowUp) {
   let currentBlockquote = null;
   let inMathBlock = false;
   let mathBlockLines = [];
+  let inCodeBlock = false;
+  let codeBlockLines = [];
   let listKey = 0;
   let tableKey = 0;
   let pKey = 0;
   let hKey = 0;
   let bqKey = 0;
+  let codeKey = 0;
 
   function flushList() {
     if (currentList) {
@@ -319,6 +473,51 @@ function parseTextAndTables(text, onFollowUp) {
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     const trimmed = line.trim();
+
+    if (inCodeBlock) {
+      if (trimmed.startsWith("```")) {
+        inCodeBlock = false;
+        const codeText = codeBlockLines.join("\n");
+        elements.push(
+          <pre key={`code-${codeKey++}`}>
+            <code>{codeText}</code>
+          </pre>
+        );
+        codeBlockLines = [];
+      } else {
+        codeBlockLines.push(line);
+      }
+      continue;
+    }
+
+    const chartMatch = line.match(/\[CHART:\s*([A-Z0-9]{3,8})\]/i);
+    if (chartMatch) {
+      flushList();
+      flushTable();
+      flushBlockquote();
+      const symbol = chartMatch[1].toUpperCase();
+      const beforeText = line.replace(/\[CHART:\s*[A-Z0-9]{3,8}\]/i, "").trim();
+      if (beforeText) {
+        elements.push(
+          <p key={`p-${pKey++}`} style={{ margin: "0.5rem 0", lineHeight: "1.5" }}>
+            {parseInline(beforeText)}
+          </p>
+        );
+      }
+      elements.push(
+        <WarrantChatChart key={`chart-${i}`} symbol={symbol} language={language} />
+      );
+      continue;
+    }
+
+    if (trimmed.startsWith("```")) {
+      flushList();
+      flushTable();
+      flushBlockquote();
+      inCodeBlock = true;
+      codeBlockLines = [];
+      continue;
+    }
 
     if (trimmed !== ">" && !trimmed.startsWith("> ")) {
       flushBlockquote();
@@ -561,6 +760,14 @@ function parseTextAndTables(text, onFollowUp) {
   flushList();
   flushTable();
   flushBlockquote();
+  if (inCodeBlock && codeBlockLines.length > 0) {
+    const codeText = codeBlockLines.join("\n");
+    elements.push(
+      <pre key={`code-${codeKey++}`}>
+        <code>{codeText}</code>
+      </pre>
+    );
+  }
   return elements;
 }
 
@@ -601,7 +808,7 @@ function normalizeLatex(content) {
   return result;
 }
 
-function renderMessageContent(content, onFollowUp) {
+function renderMessageContent(content, onFollowUp, language = "vi") {
   if (!content) return "";
   content = content.normalize("NFC");
   
@@ -616,7 +823,7 @@ function renderMessageContent(content, onFollowUp) {
     return "";
   });
 
-  const renderedElements = parseTextAndTables(cleanContent, onFollowUp);
+  const renderedElements = parseTextAndTables(cleanContent, onFollowUp, language);
 
   return (
     <>
@@ -875,7 +1082,7 @@ export function AIChatWidget({ language = "vi" }) {
                   </div>
                   <div className="bubble" style={{ maxWidth: "100%" }}>
                     {isAssistant ? (
-                      renderMessageContent(msg.content, handleSendMessage)
+                      renderMessageContent(msg.content, handleSendMessage, language)
                     ) : (
                       <p style={{ whiteSpace: "pre-line" }}>{msg.content}</p>
                     )}

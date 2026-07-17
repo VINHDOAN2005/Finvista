@@ -43,7 +43,7 @@ if "sqlite" in DATABASE_URL:
 else:
     engine = create_engine(DATABASE_URL)
 
-# Enable SQLite WAL (Write-Ahead Logging) mode to allow concurrent reads and writes
+# Enable SQLite WAL (Write-Ahead Logging) mode and high-performance local tuning
 from sqlalchemy import event
 @event.listens_for(engine, "connect")
 def set_sqlite_pragma(dbapi_connection, connection_record):
@@ -51,6 +51,9 @@ def set_sqlite_pragma(dbapi_connection, connection_record):
         cursor = dbapi_connection.cursor()
         cursor.execute("PRAGMA journal_mode=WAL;")
         cursor.execute("PRAGMA synchronous=NORMAL;")
+        cursor.execute("PRAGMA cache_size=-64000;")       # Use 64MB cache instead of default 2MB
+        cursor.execute("PRAGMA temp_store=MEMORY;")       # Keep temporary tables and indexes in RAM
+        cursor.execute("PRAGMA mmap_size=268435456;")     # Enable memory-mapped I/O up to 256MB for ultra-fast reads
         cursor.close()
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

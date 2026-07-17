@@ -61,7 +61,7 @@ export function WarrantDetailPage({
     try {
       const [sim, hist] = await Promise.all([
         getWarrantSimulation(target),
-        getWarrantHistory(target, 240)
+        getWarrantHistory(target, 500)
       ]);
       setSimulation(sim);
       setHistory(hist);

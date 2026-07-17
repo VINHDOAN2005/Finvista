@@ -255,7 +255,7 @@ export function InteractiveLineChart({
         <div className="chart-toolbar">
           <button onClick={() => zoom("in")}>+</button>
           <button onClick={() => zoom("out")}>-</button>
-          <button onClick={resetZoom}>{isEnglish ? "Reset" : "Reset"}</button>
+          <button onClick={resetZoom}>{isEnglish ? "Reset" : "Đặt lại"}</button>
         </div>
       </div>
 
@@ -457,6 +457,7 @@ export function CandlestickChart({
   const safeViewSize = Math.max(2, Math.min(viewSize || total || 2, total || 2));
   const safeStart = Math.max(0, Math.min(viewStart, Math.max(0, total - safeViewSize)));
   const visibleCandles = candles.slice(safeStart, safeStart + safeViewSize);
+  const candleWidth = Math.max(1, Math.min(22, (plotWidth / Math.max(visibleCandles.length, 1)) * 0.72));
   const values = visibleCandles.flatMap((item) => [item.high, item.low]).filter((value) => Number.isFinite(value));
   const minValue = values.length ? Math.min(...values) : 0;
   const maxValue = values.length ? Math.max(...values) : 1;
@@ -467,7 +468,9 @@ export function CandlestickChart({
 
   function xFor(index) {
     if (visibleCandles.length <= 1) return padding.left + plotWidth / 2;
-    return padding.left + (index / (visibleCandles.length - 1)) * plotWidth;
+    const margin = candleWidth / 2 + 5;
+    const availableWidth = plotWidth - margin * 2;
+    return padding.left + margin + (index / (visibleCandles.length - 1)) * availableWidth;
   }
 
   function yFor(value) {
@@ -604,8 +607,6 @@ export function CandlestickChart({
     );
   }
 
-  const candleWidth = Math.max(1, Math.min(22, (plotWidth / Math.max(visibleCandles.length, 1)) * 0.72));
-
   const activeCandle = hoverCandle || visibleCandles[visibleCandles.length - 1] || null;
 
   const volumeMaPoints = visibleCandles.map((item, index) => {
@@ -634,12 +635,12 @@ export function CandlestickChart({
         <div className="chart-toolbar">
           <button onClick={() => zoom("in")}>+</button>
           <button onClick={() => zoom("out")}>-</button>
-          <button onClick={resetZoom}>{isEnglish ? "Reset" : "Reset"}</button>
+          <button onClick={resetZoom}>{isEnglish ? "Reset" : "Đặt lại"}</button>
         </div>
       </div>
       <div className="chart-legend candle-legend" style={{ display: "flex", gap: "0.8rem" }}>
         <span><i style={{ background: "#26a69a" }} />{isEnglish ? "Up" : "Tăng"}</span>
-        <span><i style={{ background: "#ef5350" }} />{isEnglish ? "Giảm" : "Giảm"}</span>
+        <span><i style={{ background: "#ef5350" }} />{isEnglish ? "Down" : "Giảm"}</span>
         <span><i style={{ background: "#5a9bd2" }} />MA5</span>
         <span><i style={{ background: "#f89e35" }} />Vol SMA9</span>
       </div>

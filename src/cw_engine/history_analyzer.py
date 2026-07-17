@@ -23,7 +23,7 @@ with contextlib.redirect_stdout(open(os.devnull, 'w')), \
     import vnstock
 
 try:
-    from src.modules.cw_pricing.models.pricing_core import (
+    from src.cw_engine.pricing_core import (
         estimate_implied_volatility,
         calculate_greeks_for_cw,
         parse_ratio,
@@ -38,7 +38,7 @@ except ImportError:
         RISK_FREE_RATE
     )
 
-REPORT_PATH = os.path.join("data", "processed", "excel_cw_report.csv")
+REPORT_PATH = os.path.join("data", "excel_cw_report.csv")
 
 def draw_ascii_chart(dates: list, ivs: list, hvs: list, title: str):
     """Draw a beautiful ASCII chart in the terminal comparing IV vs HV trends."""
@@ -98,42 +98,18 @@ def analyze_historical_warrant(cw_symbol: str, lookback_days: int = 20) -> pd.Da
     """
     cw_symbol = cw_symbol.upper().strip()
     
-    # Step 1: Resolve metadata from database first (more reliable on cloud), fallback to CSV
-    meta = None
-    
-    # Try database first
-    try:
-        from src.core.database import SessionLocal, MarketOpportunity
-        db = SessionLocal()
-        try:
-            db_row = db.query(MarketOpportunity).filter(MarketOpportunity.symbol == cw_symbol).first()
-            if db_row:
-                # Map database fields to expected format
-                meta = {
-                    "B_MaCPCS": db_row.underlying,
-                    "R_Strike": db_row.strike_price,
-                    "hidden_ratio": db_row.ratio if db_row.ratio else "1:1",
-                    "Q_DaoHan": (datetime.now() + timedelta(days=db_row.days_to_maturity)).strftime("%Y-%m-%d") if db_row.days_to_maturity else datetime.now().strftime("%Y-%m-%d")
-                }
-                print(f"✅ Found warrant metadata in database for {cw_symbol}")
-        finally:
-            db.close()
-    except Exception as e:
-        print(f"❌ Database lookup failed: {e}, trying CSV fallback...")
-    
-    # Fallback to CSV report if database didn't return data
-    if meta is None and os.path.exists(REPORT_PATH):
-        print(f"⚠️ Database lookup failed, trying CSV report fallback...")
-        df = pd.read_csv(REPORT_PATH)
-        match = df[df["A_MaCW"] == cw_symbol]
-        if not match.empty:
-            meta = match.iloc[0]
-            print(f"✅ Found warrant metadata in CSV report for {cw_symbol}")
-    
-    if meta is None:
-        print(f"❌ Warrant '{cw_symbol}' was not found in database or CSV report.")
+    # Step 1: Resolve metadata from our master report
+    if not os.path.exists(REPORT_PATH):
+        print(f"❌ Master analysis report not found at {REPORT_PATH}. Run python run_cw.py first!")
         return pd.DataFrame()
         
+    df = pd.read_csv(REPORT_PATH)
+    match = df[df["A_MaCW"] == cw_symbol]
+    if match.empty:
+        print(f"❌ Warrant '{cw_symbol}' was not found in the latest market scans.")
+        return pd.DataFrame()
+        
+    meta = match.iloc[0]
     underlying_symbol = meta["B_MaCPCS"]
     strike = float(meta["R_Strike"])
     ratio_str = meta["hidden_ratio"]
@@ -155,38 +131,13 @@ def analyze_historical_warrant(cw_symbol: str, lookback_days: int = 20) -> pd.Da
     start_date_stock_str = start_date_stock_dt.strftime('%Y-%m-%d')
     
     print(f"📡 Retrieving historical quotes for stock {underlying_symbol} from {start_date_stock_str}...")
-    stock_hist = pd.DataFrame()
     try:
         stock_quote = vnstock.Quote(symbol=underlying_symbol)
         stock_hist = stock_quote.history(start=start_date_stock_str, end=end_date_str)
     except Exception as e:
         print(f"❌ Failed to fetch stock historical quotes: {e}")
+        return pd.DataFrame()
         
-    if stock_hist.empty or 'close' not in stock_hist.columns:
-        print("⚠️ Stock historical quotes are empty or failed. Trying SQLite DB fallback...")
-        try:
-            from src.core.database import SessionLocal, StockHistoricalPrice
-            db = SessionLocal()
-            try:
-                db_rows = db.query(StockHistoricalPrice).filter(
-                    StockHistoricalPrice.symbol == underlying_symbol,
-                    StockHistoricalPrice.date >= start_date_stock_str,
-                    StockHistoricalPrice.date <= end_date_str
-                ).order_by(StockHistoricalPrice.date).all()
-                if db_rows:
-                    stock_hist = pd.DataFrame([{
-                        'date': r.date,
-                        'open': r.open / 1000.0 if r.open is not None else None,
-                        'high': r.high / 1000.0 if r.high is not None else None,
-                        'low': r.low / 1000.0 if r.low is not None else None,
-                        'close': r.close / 1000.0,  # Convert to thousands to match vnstock unit
-                        'volume': r.volume
-                    } for r in db_rows])
-            finally:
-                db.close()
-        except Exception as dbe:
-            print(f"❌ SQLite DB fallback failed for stock: {dbe}")
-
     if stock_hist.empty or 'close' not in stock_hist.columns:
         print("❌ Stock historical quotes are empty.")
         return pd.DataFrame()
@@ -206,51 +157,18 @@ def analyze_historical_warrant(cw_symbol: str, lookback_days: int = 20) -> pd.Da
     stock_hist['rolling_hv'] = stock_hist['log_return'].rolling(40).std() * np.sqrt(252)
     
     # Step 3: Fetch historical quotes for the Covered Warrant
-    # Try database first (more reliable on cloud environments)
     start_date_cw_dt = now - timedelta(days=lookback_days + 5)
     start_date_cw_str = start_date_cw_dt.strftime('%Y-%m-%d')
     print(f"📡 Retrieving historical quotes for warrant {cw_symbol} from {start_date_cw_str}...")
-    cw_hist = pd.DataFrame()
-    
-    # Try vnstock API first to get real-time live data
     try:
         cw_quote = vnstock.Quote(symbol=cw_symbol)
         cw_hist = cw_quote.history(start=start_date_cw_str, end=end_date_str)
-        if not cw_hist.empty and 'close' in cw_hist.columns:
-            print(f"✅ Loaded data from vnstock API for {cw_symbol}")
     except Exception as e:
-        print(f"❌ Failed to fetch warrant historical quotes from vnstock: {e}")
+        print(f"❌ Failed to fetch warrant historical quotes: {e}")
+        return pd.DataFrame()
         
-    # Fallback to database if vnstock API failed or returned empty
-    if cw_hist.empty or 'close' not in cw_hist.columns:
-        print(f"⚠️ vnstock API failed or returned empty, trying database fallback...")
-        try:
-            from src.core.database import SessionLocal, CWHistoricalPrice
-            db = SessionLocal()
-            try:
-                db_rows = db.query(CWHistoricalPrice).filter(
-                    CWHistoricalPrice.symbol == cw_symbol,
-                    CWHistoricalPrice.date >= start_date_cw_str,
-                    CWHistoricalPrice.date <= end_date_str
-                ).order_by(CWHistoricalPrice.date).all()
-                if db_rows:
-                    cw_hist = pd.DataFrame([{
-                        'date': r.date,
-                        'open': r.open / 1000.0 if r.open is not None else None,
-                        'high': r.high / 1000.0 if r.high is not None else None,
-                        'low': r.low / 1000.0 if r.low is not None else None,
-                        'close': r.close / 1000.0,  # Convert to thousands to match vnstock unit
-                        'volume': r.volume
-                    } for r in db_rows])
-                    print(f"✅ Loaded {len(db_rows)} rows from database for {cw_symbol}")
-            finally:
-                db.close()
-        except Exception as dbe:
-            print(f"❌ Database fetch failed for warrant: {dbe}")
-
     if cw_hist.empty or 'close' not in cw_hist.columns:
         print("❌ Warrant historical quotes are empty.")
-        print(f"⚠️ Returning empty DataFrame - this will cause 404 error in API")
         return pd.DataFrame()
         
     if 'time' in cw_hist.columns and 'date' not in cw_hist.columns:
@@ -268,13 +186,8 @@ def analyze_historical_warrant(cw_symbol: str, lookback_days: int = 20) -> pd.Da
     cw_hist = cw_hist.drop_duplicates(subset='date', keep='last')
     
     # Step 4: Align dataframes by date
-    cols_to_keep = ['date', 'close', 'volume']
-    for extra_col in ['open', 'high', 'low']:
-        if extra_col in cw_hist.columns:
-            cols_to_keep.append(extra_col)
-            
     merged = pd.merge(
-        cw_hist[cols_to_keep], 
+        cw_hist[['date', 'close', 'volume']], 
         stock_hist[['date', 'close', 'rolling_hv']], 
         on='date', 
         suffixes=('_cw', '_stock')
@@ -297,18 +210,11 @@ def analyze_historical_warrant(cw_symbol: str, lookback_days: int = 20) -> pd.Da
     VNSTOCK_PRICE_MULTIPLIER = 1000
     merged['close_cw'] = merged['close_cw'] * VNSTOCK_PRICE_MULTIPLIER
     merged['close_stock'] = merged['close_stock'] * VNSTOCK_PRICE_MULTIPLIER
-    for col in ['open', 'high', 'low']:
-        if col in merged.columns:
-            merged[col] = merged[col] * VNSTOCK_PRICE_MULTIPLIER
     # Note: rolling_hv is computed from log returns (ratios), so it is unit-agnostic and needs no conversion
     
     # Step 5: Back-solve daily Implied Volatility (IV) and compute Greeks
     ivs, hvs, deltas, gearings, theta_burns = [], [], [], [], []
-    theo_price_hvs, pricing_gap_pcts = [], []
     price_changes_stock, price_changes_cw = [], []
-    
-    from src.modules.cw_pricing.models.pricing_core import n_cdf, calculate_d1_d2
-    import math
     
     for idx, row in merged.iterrows():
         trade_date = row['date']
@@ -319,7 +225,6 @@ def analyze_historical_warrant(cw_symbol: str, lookback_days: int = 20) -> pd.Da
         # Calculate remaining calendar days to maturity on this trading date
         days_to_maturity = (maturity_date - trade_date).days
         days_to_maturity = max(1, days_to_maturity) # Safety floor
-        T = days_to_maturity / 365.0
         
         # Solve for Implied Volatility (IV)
         iv = estimate_implied_volatility(
@@ -329,13 +234,6 @@ def analyze_historical_warrant(cw_symbol: str, lookback_days: int = 20) -> pd.Da
             days_to_maturity=days_to_maturity,
             risk_free_rate=RISK_FREE_RATE
         )
-        
-        # BSM-HV fair value & gap calculation
-        calc_vol = hv if not np.isnan(hv) and hv > 0 else 0.35
-        d1_hv, d2_hv = calculate_d1_d2(s_price, strike, T, RISK_FREE_RATE, calc_vol)
-        theo_price_hv = (s_price * n_cdf(d1_hv) - strike * math.exp(-RISK_FREE_RATE * T) * n_cdf(d2_hv)) / ratio
-        theo_price_hv = max(0.0, theo_price_hv)
-        pricing_gap_pct = ((c_price - theo_price_hv) / theo_price_hv * 100) if theo_price_hv > 0 else 0.0
         
         # Sanity guard: if IV solver hit boundary floors (sigma <= 0.01),
         # it means the market price exceeds BSM theoretical max at any reasonable vol.
@@ -362,8 +260,6 @@ def analyze_historical_warrant(cw_symbol: str, lookback_days: int = 20) -> pd.Da
         deltas.append(greeks['delta'])
         gearings.append(gearing)
         theta_burns.append(theta_burn)
-        theo_price_hvs.append(theo_price_hv)
-        pricing_gap_pcts.append(pricing_gap_pct)
         
         # Calculate daily returns
         if idx > 0:
@@ -382,8 +278,6 @@ def analyze_historical_warrant(cw_symbol: str, lookback_days: int = 20) -> pd.Da
     merged['delta'] = deltas
     merged['gearing'] = gearings
     merged['theta_burn'] = theta_burns
-    merged['theo_price_hv'] = theo_price_hvs
-    merged['pricing_gap_pct'] = pricing_gap_pcts
     merged['chg_stock'] = price_changes_stock
     merged['chg_cw'] = price_changes_cw
     

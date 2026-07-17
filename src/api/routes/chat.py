@@ -242,6 +242,10 @@ async def chat_completion(request: ChatRequest, req_raw: Request):
             "Dưới đây là thông tin thực tế từ hệ thống dữ liệu định lượng của ứng dụng Finvista. "
             "Hãy sử dụng những thông tin này để trả lời câu hỏi của người dùng một cách cá nhân hóa, "
             "chính xác và thực tế nhất.\n\n"
+            "QUY TẮC VẼ BIỂU ĐỒ:\n"
+            "Khi người dùng yêu cầu vẽ biểu đồ hoặc đồ thị cho một mã chứng quyền cụ thể (ví dụ: CACB2511) hoặc một cổ phiếu cơ sở cụ thể (ví dụ: FPT, MBB, ACB), bạn bắt buộc phải viết "
+            "token đặc biệt [CHART: Mã] (ví dụ: [CHART: CACB2511] hoặc [CHART: FPT]) ở một dòng riêng biệt trong phản hồi của bạn. Hệ thống sẽ tự động bắt lấy token này "
+            "để hiển thị biểu đồ kỹ thuật tương tác trực quan thực tế (chứa lịch sử giá) cực kỳ đẹp mắt ngay tại vị trí đó.\n\n"
         )
         system_prompt += "\n".join(system_context)
         

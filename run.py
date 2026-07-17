@@ -23,6 +23,10 @@ import os
 import sys
 import argparse
 import subprocess
+import warnings
+
+# Suppress sklearn unpickling version mismatch warnings
+warnings.filterwarnings("ignore", message=".*unpickle.*")
 
 # Sanitize proxy variables to prevent httpx IPv6 loopback crash (::1)
 for var in ["no_proxy", "NO_PROXY"]:

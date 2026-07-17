@@ -762,7 +762,7 @@ h3 {
 
 .market-tile-row {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.75rem;
 }
 
@@ -1538,6 +1538,20 @@ code {
   margin-top: 1rem;
 }
 
+.split-grid > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.split-grid > div > .table-wrap {
+  flex: 1;
+}
+
+.split-grid > div > .table-wrap > table {
+  height: 100%;
+}
+
+
 .kpi-group {
   display: grid;
   gap: 0.7rem;
@@ -2201,6 +2215,82 @@ code {
   white-space: nowrap;
 }
 
+.chat-message-row .bubble pre {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 0.5rem 0;
+  max-width: 100%;
+}
+
+.chat-message-row .bubble pre code {
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--text-main, #f8fafc);
+  line-height: 1.35;
+  white-space: pre;
+  display: block;
+}
+
+/* Custom CSS overrides for chart rendering in chat bubbles */
+.chat-message-row .bubble .warrant-chat-chart-container {
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  background: var(--bg-card, rgba(255, 255, 255, 0.03)) !important;
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08)) !important;
+  padding: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.chat-message-row .bubble .warrant-chat-chart-container .chart-card {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.chat-message-row .bubble .warrant-chat-chart-container .chart-header {
+  display: none !important;
+}
+
+.chat-message-row .bubble .warrant-chat-chart-container .chart-legend {
+  margin: 0.25rem 0 0.5rem 0 !important;
+  padding: 0 !important;
+  font-size: 0.7rem !important;
+}
+
+.chat-message-row .bubble .warrant-chat-chart-container .chart-legend i {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+.chat-message-row .bubble .warrant-chat-chart-container .chart-info-header {
+  position: absolute !important;
+  top: 0.35rem !important;
+  left: 15px !important;
+  font-size: 0.6rem !important;
+  gap: 0.35rem !important;
+  line-height: 1 !important;
+}
+
+.chat-message-row .bubble .warrant-chat-chart-container .chart-info-header * {
+  font-size: 0.6rem !important;
+}
+
+.chat-message-row .bubble .warrant-chat-chart-container .axis-label {
+  font-size: 8px !important;
+}
+
+.chat-message-row .bubble .warrant-chat-chart-container .chart-help {
+  display: none !important;
+}
+
 /* Pagination styles */
 .pagination-wrapper {
   display: flex;
@@ -2242,6 +2332,39 @@ code {
 }
 .app-shell.color-dark .pagination-sub {
   color: var(--text-muted, #a8b1c2) !important;
+}
+
+/* Chat Chart Refresh Button & Spin Animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.chart-refresh-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 4px;
+  color: var(--text-muted, #94a3b8);
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.chart-refresh-btn:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: var(--text-main, #ffffff) !important;
+}
+
+.chart-refresh-btn:active {
+  transform: scale(0.95);
 }
 
 

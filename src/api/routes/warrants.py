@@ -65,7 +65,7 @@ class GreekCalculatorResponse(BaseModel):
 @router.get("/api/warrants/opportunities")
 def get_cw_opportunities(
     strategy: str = Query(
-        "balanced", regex="^(balanced|safe|aggressive)$", description="Target trading profile"
+        "balanced", pattern="^(balanced|safe|aggressive)$", description="Target trading profile"
     ),
     underlying: Optional[str] = Query(
         None, description="Filter by underlying stock ticker (e.g. HPG)"
@@ -130,7 +130,7 @@ def calculate_greeks(req: GreeksCalculatorRequest):
 @limiter.limit("1/minute")
 async def trigger_market_scan(
     request: Request,
-    strategy: str = Query("balanced", regex="^(balanced|safe|aggressive)$"),
+    strategy: str = Query("balanced", pattern="^(balanced|safe|aggressive)$"),
 ):
     """
     Manually trigger a complete real-time market data crawl and quantitative analysis scan.
@@ -194,7 +194,7 @@ async def run_async_scan_task(strategy: str):
 async def trigger_market_scan_async(
     request: Request,
     background_tasks: BackgroundTasks,
-    strategy: str = Query("balanced", regex="^(balanced|safe|aggressive)$"),
+    strategy: str = Query("balanced", pattern="^(balanced|safe|aggressive)$"),
 ):
     """
     Asynchronously triggers a complete real-time market data crawl and quantitative scan.
@@ -231,7 +231,7 @@ def get_warrant_simulation(symbol: str):
 @router.get("/api/warrants/{symbol}/history")
 def get_warrant_history(
     symbol: str,
-    days: int = Query(15, ge=5, le=300, description="Number of trading sessions to look back"),
+    days: int = Query(15, ge=5, le=1000, description="Number of trading sessions to look back"),
 ):
     """
     Retrieve historical volatility structures and Greeks via WarrantService.

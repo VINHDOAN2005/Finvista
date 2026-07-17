@@ -1060,6 +1060,11 @@ tbody tr:hover .strong-cell {
   text-shadow: 0 0 8px rgba(0, 139, 122, 0.15);
 }
 
+.market-tile-row .market-tile:nth-child(2) strong {
+  color: var(--warning, #c9952f);
+  text-shadow: 0 0 8px rgba(201, 149, 47, 0.15);
+}
+
 .market-tile-row .market-tile:last-child strong {
   color: var(--sell, #d94a6f);
   text-shadow: 0 0 8px rgba(217, 74, 111, 0.15);
@@ -1073,6 +1078,11 @@ tbody tr:hover .strong-cell {
 .app-shell.color-dark .market-tile-row .market-tile:first-child strong {
   color: #48d6b5; /* bright cyan-green for buy signals count */
   text-shadow: 0 0 8px rgba(72, 214, 181, 0.25);
+}
+
+.app-shell.color-dark .market-tile-row .market-tile:nth-child(2) strong {
+  color: #f8a835; /* bright orange/yellow for consider signals count */
+  text-shadow: 0 0 8px rgba(248, 168, 53, 0.25);
 }
 
 .app-shell.color-dark .market-tile-row .market-tile:last-child strong {

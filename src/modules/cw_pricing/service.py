@@ -540,6 +540,147 @@ class WarrantService:
     def get_history(symbol: str, days: int = 15) -> Dict[str, Any]:
         """Retrieve historical volatility and Greeks for a warrant."""
         symbol_clean = symbol.upper().strip()
+        
+        # Intercept stock tickers (typically 3 chars) to return stock historical price directly
+        if len(symbol_clean) == 3:
+            import vnstock
+            from datetime import timedelta
+            
+            stock_hist = pd.DataFrame()
+            try:
+                stock_quote = vnstock.Quote(symbol=symbol_clean)
+                now = datetime.now()
+                # Fetch days + 45 to get enough data to satisfy lookback
+                start_date_str = (now - timedelta(days=days + 45)).strftime("%Y-%m-%d")
+                end_date_str = now.strftime("%Y-%m-%d")
+                stock_hist = stock_quote.history(start=start_date_str, end=end_date_str)
+            except Exception as e:
+                print(f"Failed to fetch live stock history from vnstock: {e}")
+                
+            if stock_hist is not None and not stock_hist.empty and 'close' in stock_hist.columns:
+                if 'time' in stock_hist.columns and 'date' not in stock_hist.columns:
+                    stock_hist = stock_hist.rename(columns={'time': 'date'})
+                
+                stock_hist['date'] = pd.to_datetime(stock_hist['date'])
+                stock_hist = stock_hist.sort_values('date').tail(days)
+                
+                history_records = []
+                for _, row in stock_hist.iterrows():
+                    close_val = float(row['close'])
+                    if close_val < 1000:
+                        close_val *= 1000.0
+                    open_val = float(row['open']) if 'open' in row and pd.notna(row['open']) else close_val
+                    if open_val < 1000:
+                        open_val *= 1000.0
+                    high_val = float(row['high']) if 'high' in row and pd.notna(row['high']) else close_val
+                    if high_val < 1000:
+                        high_val *= 1000.0
+                    low_val = float(row['low']) if 'low' in row and pd.notna(row['low']) else close_val
+                    if low_val < 1000:
+                        low_val *= 1000.0
+                        
+                    w_ohlc = {
+                        "open": open_val,
+                        "high": high_val,
+                        "low": low_val,
+                        "close": close_val,
+                        "volume": float(row['volume']) if 'volume' in row and pd.notna(row['volume']) else 0.0
+                    }
+                    history_records.append({
+                        "date": row['date'].strftime("%Y-%m-%d"),
+                        "warrant_price": 0.0,
+                        "warrant_change_pct": 0.0,
+                        "underlying_price": close_val,
+                        "underlying_change_pct": 0.0,
+                        "implied_volatility_pct": 0.0,
+                        "historical_volatility_pct": 0.0,
+                        "vol_spread_pct": 0.0,
+                        "delta": 0.0,
+                        "gearing": 0.0,
+                        "theta_burn_pct": 0.0,
+                        "warrant_ohlc": w_ohlc,
+                        "theoretical_price": close_val,
+                        "pricing_gap_pct": 0.0
+                    })
+                
+                return {
+                    "symbol": symbol_clean,
+                    "lookback_sessions": len(history_records),
+                    "averages": {
+                        "average_iv_pct": 0.0,
+                        "average_hv_pct": 0.0,
+                        "average_spread_pct": 0.0,
+                        "average_gearing": 0.0,
+                        "valuation_assessment": "STOCK"
+                    },
+                    "history": history_records
+                }
+            
+            # Fallback to local SQLite database if vnstock fails/returns empty
+            db = SessionLocal()
+            try:
+                from src.core.database import StockHistoricalPrice
+                rows = db.query(StockHistoricalPrice).filter(
+                    StockHistoricalPrice.symbol == symbol_clean
+                ).order_by(desc(StockHistoricalPrice.date)).limit(days).all()
+                
+                if not rows:
+                    raise HTTPException(
+                        status_code=status.HTTP_404_NOT_FOUND,
+                        detail=f"Historical data for stock '{symbol_clean}' could not be resolved."
+                    )
+                
+                # Sort chronological
+                rows = sorted(rows, key=lambda x: x.date)
+                
+                history_records = []
+                for row in rows:
+                    w_ohlc = {
+                        "open": float(row.open) if row.open is not None else float(row.close),
+                        "high": float(row.high) if row.high is not None else float(row.close),
+                        "low": float(row.low) if row.low is not None else float(row.close),
+                        "close": float(row.close),
+                        "volume": float(row.volume) if row.volume is not None else 0.0
+                    }
+                    history_records.append({
+                        "date": row.date,
+                        "warrant_price": 0.0,
+                        "warrant_change_pct": 0.0,
+                        "underlying_price": float(row.close),
+                        "underlying_change_pct": 0.0,
+                        "implied_volatility_pct": 0.0,
+                        "historical_volatility_pct": 0.0,
+                        "vol_spread_pct": 0.0,
+                        "delta": 0.0,
+                        "gearing": 0.0,
+                        "theta_burn_pct": 0.0,
+                        "warrant_ohlc": w_ohlc,
+                        "theoretical_price": float(row.close),
+                        "pricing_gap_pct": 0.0
+                    })
+                
+                return {
+                    "symbol": symbol_clean,
+                    "lookback_sessions": len(rows),
+                    "averages": {
+                        "average_iv_pct": 0.0,
+                        "average_hv_pct": 0.0,
+                        "average_spread_pct": 0.0,
+                        "average_gearing": 0.0,
+                        "valuation_assessment": "STOCK"
+                    },
+                    "history": history_records
+                }
+            except HTTPException:
+                raise
+            except Exception as e:
+                raise HTTPException(
+                    status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                    detail=f"Warrant Service: Failed to fetch stock history: {str(e)}"
+                )
+            finally:
+                db.close()
+
         try:
             df = analyze_historical_warrant(symbol_clean, lookback_days=days)
             if df.empty:

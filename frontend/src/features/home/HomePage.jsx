@@ -22,9 +22,9 @@ export function HomePage({ setPage, setSelectedSymbol, language }) {
       const result = await getOpportunities({
         strategy: "balanced",
         underlying: "",
-        limit: 50,
+        limit: 1000,
         forceRefresh,
-        vn30Only: true
+        vn30Only: false
       });
       setMarketBrief(result);
     } catch (err) {
@@ -54,6 +54,10 @@ export function HomePage({ setPage, setSelectedSymbol, language }) {
   ).length;
   const skipCount = briefRows.filter((row) =>
     row.recommendation_signal?.toUpperCase().includes("SKIP")
+  ).length;
+  const neutralCount = briefRows.filter((row) =>
+    !row.recommendation_signal?.toUpperCase().includes("BUY") &&
+    !row.recommendation_signal?.toUpperCase().includes("SKIP")
   ).length;
 
   function openWarrantDetail(symbol) {
@@ -215,6 +219,10 @@ export function HomePage({ setPage, setSelectedSymbol, language }) {
                 <div className="market-tile">
                   <span>{isEnglish ? "Buy signals" : "Tín hiệu mua"}</span>
                   <strong>{buyCount}</strong>
+                </div>
+                <div className="market-tile">
+                  <span>{isEnglish ? "Consider signals" : "Tín hiệu xem xét"}</span>
+                  <strong>{neutralCount}</strong>
                 </div>
                 <div className="market-tile">
                   <span>{isEnglish ? "Skip signals" : "Tín hiệu bỏ qua"}</span>

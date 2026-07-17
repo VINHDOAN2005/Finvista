@@ -308,12 +308,36 @@ def gemini_stream_generate_iter(prompt: str, model_id: int, think_mode: int):
 
 
 def clean_gemini_text(text: str) -> str:
-    """Remove internal code execution artifacts."""
+    """Remove internal code execution artifacts and activity warnings."""
     text = re.sub(
         r'```(?:python|javascript|text)\?code_(?:reference|stdout)&code_event_index=\d+\n.*?```\n?',
         '', text, flags=re.DOTALL
     )
+    # Remove Gemini Apps Activity warnings and links in Vietnamese and English
+    text = re.sub(
+        r'Để dùng được toàn bộ chức năng của tất cả các ứng dụng, hãy bật chế độ\s+\[?Hoạt động trên Các ứng dụng Gemini\]?\(https://myactivity\.google\.com/product/gemini\)\.?',
+        '', text, flags=re.IGNORECASE
+    )
+    text = re.sub(
+        r'To use all features of all apps, please turn on\s+\[?Gemini Apps Activity\]?\(https://myactivity\.google\.com/product/gemini\)\.?',
+        '', text, flags=re.IGNORECASE
+    )
+    # Remove tool suggestions that complain about activity settings
+    text = re.sub(
+        r'Bạn có muốn tôi quét sâu hơn vào danh sách riêng các chứng quyền của \w+ đang lưu hành trên thị trường để lọc ra mã tối ưu nhất cho bạn không\??',
+        '', text, flags=re.IGNORECASE
+    )
+    # Generic cleanup of activity settings link if it still appears
+    text = re.sub(
+        r'\[?Hoạt động trên Các ứng dụng Gemini\]?\(https://myactivity\.google\.com/product/gemini\)\.?',
+        '', text, flags=re.IGNORECASE
+    )
+    text = re.sub(
+        r'\[?Gemini Apps Activity\]?\(https://myactivity\.google\.com/product/gemini\)\.?',
+        '', text, flags=re.IGNORECASE
+    )
     return text.strip()
+
 
 
 def extract_response_text(raw: str) -> str:

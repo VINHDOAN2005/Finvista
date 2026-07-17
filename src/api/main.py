@@ -10,6 +10,10 @@ Version: 1.0.0
 
 import os
 import sys
+import warnings
+
+# Suppress sklearn unpickling version mismatch warnings
+warnings.filterwarnings("ignore", message=".*unpickle.*")
 
 import pandas as pd
 from fastapi import FastAPI, status
@@ -50,6 +54,10 @@ app.add_middleware(
     allow_origins=[
         "https://finvista-chi.vercel.app",
         "https://finvista-xppw.onrender.com",
+        "http://127.0.0.1:5173",
+        "http://localhost:5173",
+        "http://127.0.0.1:4173",
+        "http://localhost:4173",
         "*"
     ],
     allow_credentials=True,
