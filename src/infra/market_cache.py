@@ -33,6 +33,42 @@ def _now_vn() -> datetime:
     return datetime.now()
 
 
+def get_last_trading_session_date(dt: datetime) -> str:
+    """Trả về ngày của phiên giao dịch đóng cửa gần nhất (định dạng YYYY-MM-DD)."""
+    current_date = dt.date()
+    current_time = dt.time()
+    
+    # Nếu trong tuần và đã sau 15:00, phiên giao dịch hôm nay đã đóng cửa
+    if dt.weekday() < 5 and current_time >= MARKET_CLOSE:
+        target_date = current_date
+    else:
+        # Nếu chưa đóng cửa hoặc là cuối tuần, phiên gần nhất ít nhất là từ ngày hôm trước
+        target_date = current_date - timedelta(days=1)
+        
+    # Bỏ qua ngày cuối tuần
+    while target_date.weekday() >= 5:
+        target_date -= timedelta(days=1)
+        
+    return target_date.strftime("%Y-%m-%d")
+
+
+def is_cache_up_to_date(now: datetime) -> bool:
+    """Kiểm tra xem dữ liệu trong cache có khớp với phiên giao dịch gần nhất không."""
+    try:
+        if not os.path.exists(CACHE_FILE):
+            return False
+        with open(CACHE_FILE, "r", encoding="utf-8") as f:
+            snapshot = json.load(f)
+        
+        cache_session_date = snapshot.get("trading_session_date", "")
+        expected_session_date = get_last_trading_session_date(now)
+        
+        # Nếu ngày session trong cache trùng hoặc mới hơn ngày session mong đợi
+        return cache_session_date >= expected_session_date
+    except Exception:
+        return False
+
+
 def is_trading_session() -> bool:
     """True nếu đang trong giờ giao dịch HOSE (09:00–15:00 weekdays)."""
     now = _now_vn()
@@ -44,11 +80,17 @@ def is_trading_session() -> bool:
 
 def should_use_cache() -> bool:
     """
-    True nếu nên dùng cache (ngoài giờ giao dịch VÀ trước 08:45).
-    Trong giờ: luôn fetch live.
-    Ngoài giờ nhưng sau 08:45: reset cache, chuẩn bị cho phiên mới.
+    True nếu nên dùng cache (ngoài giờ giao dịch VÀ trước 08:45 VÀ cache hợp lệ/mới nhất).
+    Trong giờ hoặc nếu cache bị cũ: luôn fetch live để cập nhật dữ liệu phiên mới.
     """
     now = _now_vn()
+    
+    # 1. Kiểm tra xem cache có mới nhất không
+    if not is_cache_up_to_date(now):
+        # Cache bị cũ hoặc không tồn tại -> Bắt buộc fetch live để lấy giá đóng cửa mới nhất
+        return False
+        
+    # 2. Nếu cache đã mới nhất, áp dụng logic giờ giấc để tránh gọi API dư thừa
     if now.weekday() >= 5:
         return True   # Cuối tuần -> dùng cache
     t = now.time()
@@ -66,7 +108,7 @@ def save_snapshot(df: pd.DataFrame) -> None:
         now = _now_vn()
         snapshot = {
             "saved_at": now.isoformat(),
-            "trading_session_date": now.strftime("%Y-%m-%d"),
+            "trading_session_date": get_last_trading_session_date(now),
             "is_end_of_session": now.time() >= MARKET_CLOSE,
             "record_count": len(df),
             "data": df.to_dict(orient="records")
