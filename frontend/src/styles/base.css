@@ -1,0 +1,348 @@
+:root {
+  color-scheme: light dark;
+  font-family:
+    "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: var(--surface-bg, #f8fafc);
+  color: var(--text-main, #0f172a);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  /* Inter variable axes */
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--surface-bg, #f8fbfc);
+  color: var(--text-main, #0f172a);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app-shell {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(255, 122, 24, 0.08), transparent 24%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.82), transparent 45%),
+    var(--surface-bg, #f8fafc);
+}
+
+.app-shell.theme-clear {
+  background:
+    linear-gradient(115deg, rgba(15, 118, 110, 0.05), transparent 24%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.7), transparent 48%);
+}
+
+.app-shell.motion-static *,
+.app-shell.motion-static *::before,
+.app-shell.motion-static *::after {
+  animation: none !important;
+  scroll-behavior: auto !important;
+  transition: none !important;
+}
+
+.app-shell.hints-off .helper-text,
+.app-shell.hints-off .notice.info {
+  display: none;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem clamp(1rem, 3vw, 2rem);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(248, 250, 252, 0.86);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0;
+  border: 0;
+  color: #0f172a;
+  background: transparent;
+  text-align: left;
+}
+
+.brand small {
+  display: block;
+  margin-top: 0.1rem;
+  color: #64748b;
+  font-size: 0.78rem;
+}
+
+.brand-mark {
+  display: grid;
+  width: 2.45rem;
+  height: 2.45rem;
+  place-items: center;
+  border-radius: 0.75rem;
+  background: #0f766e;
+  color: #ffffff;
+  font-weight: 800;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.35rem;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.45rem;
+}
+
+nav button {
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0.55rem 0.85rem;
+  background: transparent;
+  color: #475569;
+  transition:
+    background 0.16s ease,
+    border-color 0.16s ease,
+    color 0.16s ease,
+    transform 0.16s ease;
+}
+
+nav button:hover,
+nav button.active {
+  border-color: #cbd5e1;
+  background: #ffffff;
+  color: #0f172a;
+}
+
+nav button:hover {
+  transform: translateY(-1px);
+}
+
+.icon-button {
+  position: relative;
+  display: grid;
+  width: 2.45rem;
+  height: 2.45rem;
+  place-items: center;
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.86);
+  color: #334155;
+  transition:
+    background 0.16s ease,
+    border-color 0.16s ease,
+    color 0.16s ease,
+    transform 0.16s ease,
+    box-shadow 0.16s ease;
+}
+
+.icon-button svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.icon-button:hover,
+.icon-button.active {
+  border-color: #0f766e;
+  background: #ffffff;
+  color: #0f766e;
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+  transform: translateY(-1px);
+}
+
+.icon-button::after {
+  position: absolute;
+  right: 0;
+  bottom: -2.25rem;
+  z-index: 20;
+  width: max-content;
+  max-width: 10rem;
+  border-radius: 0.5rem;
+  padding: 0.45rem 0.6rem;
+  background: #0f172a;
+  color: #ffffff;
+  content: attr(data-tooltip);
+  font-size: 0.78rem;
+  font-weight: 750;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-0.25rem);
+  transition:
+    opacity 0.14s ease,
+    transform 0.14s ease;
+}
+
+.icon-button:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+main {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 1.25rem 0 2rem;
+  animation: pageFade 0.35s ease both;
+}
+
+/* ─── Custom Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(179, 74, 125, 0.22);
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(179, 74, 125, 0.48);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(179, 74, 125, 0.22) transparent;
+}
+
+/* ─── Global Keyframes ─── */
+@keyframes pageFade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.88) translateY(8px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.03) translateY(-2px);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ─── Page transition class ─── */
+.page-enter {
+  animation: pageFade 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ─── Skeleton / Loading shimmer ─── */
+.skeleton {
+  border-radius: 0.5rem;
+  background: linear-gradient(90deg, #f0e8ef 25%, #faf4f8 50%, #f0e8ef 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite ease-in-out;
+}
+
+/* ─── Performance hints for animated elements ─── */
+.hero-orbit-core,
+.hero-scan-plane,
+.hero-data-stream,
+.ticker-ribbon,
+.hero-atmosphere::before,
+.hero-atmosphere::after {
+  will-change: transform;
+}
+
+/* ─── Focus ring accessible ─── */
+:focus-visible {
+  outline: 2px solid rgba(179, 74, 125, 0.65);
+  outline-offset: 2px;
+  border-radius: 0.35rem;
+}
+

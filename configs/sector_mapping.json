@@ -1,0 +1,16 @@
+{
+    "Banking": ["ACB", "MBB", "VPB", "TCB", "STB", "VIB", "LPB", "CTG", "VCB", "HDB", "TPB", "BID"],
+    "Securities": ["SSI", "VND", "VCI", "HCM", "SHS", "ORS"],
+    "Insurance": ["BVH", "PGI", "MIG", "BIC", "BMI"],
+    "Real Estate": ["VHM", "VIC", "NVL", "PDR", "DIG", "NLG", "KDH", "DXG", "CEO", "VRE"],
+    "Utilities": ["GAS", "POW", "NT2", "VSH", "HND"],
+    "Energy": ["PLX", "PVD", "PVS", "PVT", "BSR"],
+    "Steel": ["HPG", "HSG", "NKG"],
+    "Rubber": ["GVR", "PHR", "DPR"],
+    "Chemicals": ["DPM", "DCM", "CSV", "LAS"],
+    "Food & Beverage": ["VNM", "MSN", "SAB", "BHN"],
+    "Retail": ["MWG", "PNJ", "FRT", "DGW"],
+    "Technology": ["FPT", "CMG", "ELC"],
+    "Transportation": ["VJC", "HVN"],
+    "Logistics": ["GMD", "HAH", "PVT"]
+}

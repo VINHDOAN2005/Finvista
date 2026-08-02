@@ -1,0 +1,124 @@
+@keyframes pageFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sectionIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes profilePopoverIn {
+  from {
+    opacity: 0;
+    transform: translateY(-0.35rem) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 900px) {
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  nav {
+    justify-content: flex-start;
+  }
+
+  .topbar-actions {
+    width: 100%;
+  }
+
+  .profile-menu-wrap {
+    margin-left: auto;
+  }
+
+  .intro-grid,
+  .split-grid,
+  .chart-grid,
+  .backend-tools {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-card.wide {
+    grid-column: auto;
+  }
+
+  .feature-strip,
+  .movement-grid,
+  .market-kpi-grid,
+  .market-dashboard-grid,
+  .market-content-grid,
+  .metric-grid,
+  .detail-summary,
+  .filters,
+  .quick-filters,
+  .preset-save,
+  .ratio-grid,
+  .settings-grid,
+  .market-tile-row {
+    grid-template-columns: 1fr;
+  }
+
+  .preset-save {
+    grid-template-columns: 1fr;
+  }
+
+  .preset-actions {
+    justify-content: flex-start;
+  }
+
+  .movement-header,
+  .signal-pie-wrap {
+    align-items: flex-start;
+    grid-template-columns: 1fr;
+  }
+
+  .market-breadth-chart {
+    grid-template-columns: 1fr;
+  }
+
+  .market-card-heading,
+  .kpi-group-heading,
+  .selected-stock-action {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .market-card-heading small,
+  .kpi-group-heading p {
+    text-align: left;
+  }
+
+  .movement-header {
+    flex-direction: column;
+  }
+
+  .system-panel {
+    min-height: 360px;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .section-actions {
+    justify-content: flex-start;
+    width: 100%;
+  }
+}

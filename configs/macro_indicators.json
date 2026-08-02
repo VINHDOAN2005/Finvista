@@ -1,0 +1,14 @@
+{
+    "last_updated": "2026-06-15 01:14:11",
+    "data_date": "2026-06-15",
+    "indicators": {
+        "interbank_rate": 0.0425,
+        "usd_vnd": 26122.0,
+        "vix": 17.68000030517578,
+        "oil_wti": 84.87999725341797,
+        "inflation_rate": 0.041,
+        "unemployment_rate": 0.023,
+        "gdp_growth_rate": 0.065
+    },
+    "source": "Finvista Macro Hybrid (vnstock + yfinance)"
+}

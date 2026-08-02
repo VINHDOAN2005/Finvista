@@ -1,0 +1,11 @@
+{
+    "sl": 0.8,
+    "rsi_th": 40,
+    "trailing_act_pct": 1.06,
+    "trailing_drop_pct": 0.93,
+    "atr_multiplier": 1.0,
+    "min_days_expiry_exit": 0,
+    "sharpe": 1.8729435279945836,
+    "win_rate": 60.317460317460316,
+    "profit_factor": 5.612752680714179
+}

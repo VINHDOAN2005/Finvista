@@ -1,0 +1,1281 @@
+/* Rose quant theme: attractive pastel palette with finance-grade contrast and trading-state clarity. */
+:root {
+  --rose-100: #f8dae9;
+  --rose-200: #f4c2d7;
+  --rose-300: #efb0c9;
+  --sky-200: #b9d6f3;
+  --sky-300: #a1c9f1;
+  --cream-100: #f1e8d9;
+  --surface-bg: #fbf6f9;
+  --surface-panel: #fffafd;
+  --surface-muted: #f8f2f6;
+  --border-soft: #ead5df;
+  --border-strong: #dcaec4;
+  --text-main: #261827;
+  --text-muted: #756574;
+  --accent-primary: #b34a7d;
+  --accent-primary-hover: #96376a;
+  --accent-cyan: #4b83b8;
+  --accent-sky: #5a9bd2;
+  --buy: #008b7a;
+  --sell: #d94a6f;
+  --warning: #aa6a00;
+  --shadow-panel: 0 12px 30px rgba(75, 42, 63, 0.08);
+  --shadow-hover: 0 16px 36px rgba(75, 42, 63, 0.12);
+  --tooltip-bg: rgba(255, 250, 253, 0.98);
+  --tooltip-border: #efb0c9;
+  --tooltip-text: #261827;
+  --tooltip-muted: #756574;
+  --tooltip-shadow: 0 12px 26px rgba(75, 42, 63, 0.16);
+  --filter-card-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(250, 246, 249, 0.96));
+  --filter-card-border: #e7dce4;
+  --filter-card-shadow: 0 10px 24px rgba(75, 42, 63, 0.06);
+  --filter-text: #2f2430;
+  --filter-muted: #796776;
+  --filter-input-bg: #fffdfd;
+  --filter-input-border: #dcced7;
+  --filter-input-focus: #b34a7d;
+  --filter-focus-ring: rgba(179, 74, 125, 0.14);
+  --filter-placeholder: #9f8798;
+  --filter-arrow: #5b6472;
+  --filter-chip-bg: #ffffff;
+  --filter-chip-border: #e8dce4;
+  --filter-chip-hover: #fff4f9;
+  --filter-chip-active-bg: #fff3f8;
+  --filter-chip-active-text: #b34a7d;
+  --control-bg: #ffffff;
+  --control-bg-muted: #fcf8fb;
+  --control-bg-hover: #fff4f9;
+  --control-bg-active: linear-gradient(135deg, rgba(179, 74, 125, 0.16), rgba(90, 155, 210, 0.12));
+  --control-border: #dfcfe0;
+  --control-border-strong: #c6a9bb;
+  --control-text: #1f2937;
+  --control-muted: #667085;
+  --control-accent: #b34a7d;
+  --control-accent-hover: #96376a;
+  --control-focus-ring: rgba(179, 74, 125, 0.16);
+  --control-shadow: 0 8px 18px rgba(75, 42, 63, 0.06);
+}
+
+body {
+  background: var(--surface-bg);
+}
+
+.app-shell,
+.app-shell.theme-clear {
+  background:
+    linear-gradient(120deg, rgba(239, 176, 201, 0.32) 0%, transparent 32%),
+    linear-gradient(250deg, rgba(161, 201, 241, 0.28) 0%, transparent 34%),
+    linear-gradient(180deg, #fffafd 0%, var(--surface-bg) 45%, #f7eef3 100%);
+}
+
+.topbar {
+  border-bottom-color: var(--border-soft);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.brand,
+h1,
+h2,
+h3,
+.market-tile strong,
+.setting-card strong,
+.metric-card strong,
+.feature-card strong,
+.flow-stack div,
+.strong-cell {
+  color: var(--text-main);
+}
+
+.brand small,
+.page-kicker,
+.intro-text,
+.feature-card p,
+.market-tile small,
+.metric-card span,
+.metric-card small,
+.ratio-item span,
+.setting-card p,
+.helper-text,
+.chart-help,
+label {
+  color: var(--text-muted);
+}
+
+.brand-mark {
+  border-radius: 0.5rem;
+  background: linear-gradient(135deg, #96376a, #5a9bd2);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.eyebrow,
+.settings-group-title span {
+  color: var(--accent-cyan);
+}
+
+.brand-eyebrow,
+.link-button {
+  border-color: var(--rose-300);
+  background: var(--rose-100);
+  color: #87365f;
+}
+
+nav button {
+  border-radius: 0.5rem;
+  color: #475467;
+}
+
+nav button:hover,
+nav button.active {
+  border-color: var(--rose-300);
+  background: #fff4f9;
+  color: #87365f;
+}
+
+.icon-button {
+  border-color: var(--border-soft);
+  border-radius: 0.55rem;
+  background: #ffffff;
+  color: #344054;
+}
+
+.icon-button:hover,
+.icon-button.active {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  box-shadow: var(--shadow-hover);
+}
+
+.intro-copy,
+.market-panel,
+.system-panel,
+.page-section,
+.cw-movement-panel,
+.feature-card,
+.metric-card,
+.ratio-item,
+.setting-card,
+.chart-card,
+.table-wrap,
+.market-tile,
+.brief-item,
+.mini-chart {
+  border-color: var(--border-soft);
+  border-radius: 0.55rem;
+  background: var(--surface-panel);
+  box-shadow: var(--shadow-panel);
+}
+
+.intro-copy,
+.market-panel,
+.system-panel,
+.cw-movement-panel,
+.page-section {
+  background:
+    linear-gradient(180deg, rgba(255, 250, 253, 0.96), rgba(255, 255, 255, 0.94)),
+    var(--surface-panel);
+}
+
+.feature-card:hover,
+.metric-card:hover,
+.ratio-item:hover,
+.brief-item:hover,
+.actionable-tile:hover,
+.cw-heatmap button:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-hover);
+}
+
+.market-visual,
+.flow-stack,
+.cw-movement-panel {
+  background:
+    linear-gradient(rgba(234, 213, 223, 0.7) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(185, 214, 243, 0.55) 1px, transparent 1px),
+    #fffafd;
+  background-size: 24px 24px;
+}
+
+.market-tile.highlight {
+  border-color: var(--rose-300);
+  background:
+    linear-gradient(135deg, rgba(248, 218, 233, 0.62), rgba(185, 214, 243, 0.34)),
+    #ffffff;
+}
+
+.market-tile.highlight.danger,
+.brief-item.danger {
+  border-color: #fecaca;
+  background: #fff7f7;
+}
+
+.market-tile.warning {
+  border-color: #e4c184;
+  background: #fff8ee;
+}
+
+.brief-item.success {
+  border-color: #b7e4da;
+}
+
+.brief-item span,
+.strong-cell {
+  color: var(--buy);
+}
+
+.movement-card,
+.cw-heatmap button {
+  border-color: var(--border-soft);
+}
+
+.movement-card {
+  background:
+    linear-gradient(180deg, rgba(255, 244, 249, 0.82), rgba(255, 255, 255, 0.64)),
+    rgba(255, 255, 255, 0.72);
+}
+
+.cw-heatmap button {
+  background:
+    linear-gradient(135deg, rgba(215, 205, 20, 0.34), rgba(248, 218, 233, 0.32)),
+    #fff8fb;
+}
+
+.mini-chart {
+  background: #ffffff;
+}
+
+.mini-chart i {
+  border-radius: 0.25rem 0.25rem 0.1rem 0.1rem;
+  background: linear-gradient(180deg, #b34a7d, #5a9bd2);
+  box-shadow: none;
+}
+
+.primary-button,
+.ui-button-default {
+  border-color: var(--accent-primary);
+  background: var(--accent-primary);
+  color: #ffffff;
+  box-shadow: 0 10px 22px rgba(179, 74, 125, 0.18);
+}
+
+.primary-button:hover,
+.ui-button-default:hover {
+  background: var(--accent-primary-hover);
+  box-shadow: 0 12px 26px rgba(179, 74, 125, 0.24);
+}
+
+.secondary-button,
+.ui-button-secondary,
+.chart-toolbar button,
+.segmented-control {
+  border-color: var(--control-border);
+  background: var(--control-bg);
+  color: var(--control-text);
+  box-shadow: var(--control-shadow);
+}
+
+.secondary-button:hover,
+.ui-button-secondary:hover,
+.ui-button-ghost:hover,
+.chart-toolbar button:hover,
+.segmented-control button:hover {
+  border-color: var(--control-accent);
+  background: var(--control-bg-hover);
+  color: var(--control-accent);
+  box-shadow: 0 6px 16px rgba(16, 24, 40, 0.06);
+}
+
+.status-pill.success,
+.badge-success,
+.badge-success-strong {
+  background: #e7f8f5;
+  color: #006c5b;
+}
+
+.badge-success-strong {
+  border-color: var(--buy);
+}
+
+.status-pill.warning,
+.badge-muted {
+  background: #fff4df;
+  color: #8a5a00;
+}
+
+.status-pill.danger,
+.badge-danger {
+  background: #fde8ef;
+  color: #a42a52;
+}
+
+.filters,
+.quick-filters,
+.filter-presets {
+  border-color: var(--border-soft);
+  border-radius: 0.55rem;
+  background:
+    linear-gradient(180deg, rgba(255, 250, 253, 0.88), rgba(255, 255, 255, 0.86));
+}
+
+input,
+select {
+  border-color: var(--control-border);
+  border-radius: 0.45rem;
+  background: var(--control-bg);
+  color: var(--control-text);
+}
+
+input::placeholder,
+select::placeholder {
+  color: var(--control-muted);
+}
+
+input:focus,
+select:focus {
+  border-color: var(--control-accent);
+  outline: 3px solid var(--control-focus-ring);
+}
+
+.preset-chip {
+  border-color: var(--control-border);
+  border-radius: 0.45rem;
+  background: var(--control-bg-muted);
+  color: var(--control-text);
+}
+
+.preset-chip button:hover {
+  background: var(--control-bg-hover);
+  color: var(--control-accent);
+}
+
+.preset-chip.active {
+  border-color: var(--control-accent);
+  background: var(--control-bg-active);
+  box-shadow: inset 3px 0 0 var(--control-accent);
+}
+
+.preset-chip.active button:first-child {
+  color: var(--control-accent);
+}
+
+.notice {
+  border-radius: 0.55rem;
+}
+
+.notice.loading {
+  border-color: var(--sky-200);
+  background: #edf6ff;
+  color: #2f6690;
+}
+
+.notice.info {
+  border-color: var(--rose-200);
+  background: #fff2f8;
+  color: #87365f;
+}
+
+.table-wrap {
+  background: #ffffff;
+  box-shadow: none;
+}
+
+th {
+  background: #f8f2f6;
+  color: #695567;
+  font-size: 0.74rem;
+}
+
+th,
+td {
+  border-bottom-color: #eaecf0;
+}
+
+tbody tr:hover,
+tbody tr.selected-row {
+  background: #fff4f9;
+  box-shadow: inset 3px 0 0 var(--accent-primary);
+}
+
+tbody tr:hover .strong-cell {
+  background: transparent;
+  color: var(--accent-primary);
+}
+
+.description-box {
+  border-left-color: var(--accent-primary);
+  background: #fff4f9;
+}
+
+.chart-card {
+  background: #ffffff;
+}
+
+.interactive-chart,
+.candle-chart {
+  border-color: var(--border-soft);
+  background:
+    linear-gradient(rgba(234, 213, 223, 0.74) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(185, 214, 243, 0.5) 1px, transparent 1px),
+    #ffffff;
+  background-size: 100% 20%, 12.5% 100%, auto;
+}
+
+.grid-line,
+.candle-chart .grid-line {
+  stroke: #ead5df;
+}
+
+.axis-label,
+.candle-chart .axis-label {
+  fill: #667085;
+}
+
+.marker-line {
+  stroke: #c83a65;
+}
+
+/* Dark theme overrides (activate by adding `theme-dark` on the app root) */
+.theme-dark,
+.app-shell.theme-dark {
+  --rose-100: #2b2230;
+  --rose-200: #352733;
+  --rose-300: #3d2f3e;
+  --sky-200: #233445;
+  --sky-300: #1f2f45;
+  --cream-100: #111318;
+  --surface-bg: #07101a; /* page background */
+  --surface-panel: #0d1620; /* panels */
+  --surface-muted: #09131a;
+  --border-soft: #16232b;
+  --border-strong: #1f3942;
+  --text-main: #e7f2f9;
+  --text-muted: #9fb3c0;
+  --accent-primary: #ff7a18; /* fireant-like orange */
+  --accent-primary-hover: #ff6400;
+  --accent-cyan: #3aa0e6;
+  --accent-sky: #4da0e8;
+  --buy: #2ad1a7;
+  --sell: #ff5c7a;
+  --warning: #f0b04a;
+  --shadow-panel: 0 10px 30px rgba(2,6,23,0.6);
+  --shadow-hover: 0 14px 36px rgba(2,6,23,0.7);
+  --tooltip-bg: rgba(8,12,18,0.96);
+  --tooltip-border: rgba(255,122,24,0.14);
+  --tooltip-text: #e7f2f9;
+  --tooltip-muted: #9fb3c0;
+  --tooltip-shadow: 0 12px 26px rgba(2,6,23,0.7);
+  --filter-card-bg: linear-gradient(180deg, rgba(19, 27, 39, 0.98), rgba(14, 21, 32, 0.97));
+  --filter-card-border: rgba(255, 255, 255, 0.12);
+  --filter-card-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 10px 24px rgba(2, 6, 23, 0.22);
+  --filter-text: #f1f5f9;
+  --filter-muted: #94a3b8;
+  --filter-input-bg: #0f1720;
+  --filter-input-border: rgba(148, 163, 184, 0.28);
+  --filter-input-focus: #7c9cff;
+  --filter-focus-ring: rgba(124, 156, 255, 0.18);
+  --filter-placeholder: #94a3b8;
+  --filter-arrow: #cbd5e1;
+  --filter-chip-bg: rgba(15, 23, 42, 0.72);
+  --filter-chip-border: rgba(71, 85, 105, 0.72);
+  --filter-chip-hover: rgba(224, 106, 162, 0.13);
+  --filter-chip-active-bg: rgba(99, 102, 241, 0.16);
+  --filter-chip-active-text: #dbeafe;
+  --control-bg: #0f1720;
+  --control-bg-muted: #111827;
+  --control-bg-hover: rgba(255, 122, 24, 0.14);
+  --control-bg-active: linear-gradient(135deg, rgba(255, 122, 24, 0.22), rgba(124, 156, 255, 0.16));
+  --control-border: rgba(148, 163, 184, 0.28);
+  --control-border-strong: rgba(124, 156, 255, 0.4);
+  --control-text: #f8fafc;
+  --control-muted: #94a3b8;
+  --control-accent: #ff7a18;
+  --control-accent-hover: #ff9652;
+  --control-focus-ring: rgba(255, 122, 24, 0.22);
+  --control-shadow: 0 10px 24px rgba(2, 6, 23, 0.2);
+}
+
+/* gentle transition when switching themes */
+.app-shell,
+.app-shell * {
+  transition: background-color 180ms ease, color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.marker-label {
+  fill: #a42a52;
+}
+
+.hover-line,
+.candle-chart .hover-line {
+  stroke: #475467;
+  opacity: 0.5;
+}
+
+.app-tooltip,
+.chart-tooltip,
+.candle-tooltip,
+.icon-button::after,
+.segmented-control button::after {
+  border: 1px solid var(--tooltip-border);
+  border-radius: 0.5rem;
+  background: var(--tooltip-bg);
+  box-shadow: var(--tooltip-shadow);
+  color: var(--tooltip-text);
+  font-size: 0.74rem;
+  line-height: 1.35;
+}
+
+.app-tooltip,
+.chart-tooltip,
+.candle-tooltip {
+  transform: translate(0.38rem, -50%);
+}
+
+.app-tooltip {
+  position: fixed;
+  z-index: 90;
+  display: grid;
+  min-width: 7.5rem;
+  max-width: min(16rem, calc(100vw - 2rem));
+  gap: 0.24rem;
+  padding: 0.5rem 0.6rem;
+  pointer-events: none;
+}
+
+.app-tooltip strong,
+.chart-tooltip strong,
+.candle-tooltip strong {
+  color: var(--accent-primary);
+  font-size: 0.76rem;
+}
+
+.app-tooltip span,
+.chart-tooltip span,
+.candle-tooltip span {
+  color: var(--tooltip-muted);
+}
+
+.app-tooltip i,
+.chart-tooltip i {
+  box-shadow: 0 0 0 1px rgba(75, 42, 63, 0.14);
+}
+
+.segmented-control button.active {
+  background: var(--accent-primary);
+  color: #ffffff;
+}
+
+.toggle-line input {
+  accent-color: var(--accent-primary);
+}
+
+.profit {
+  color: var(--buy);
+}
+
+.loss {
+  color: #d92d20;
+}
+
+.app-shell.color-dark,
+.login-shell.color-dark {
+  --surface-bg: #0a1119;
+  --surface-panel: #121a27;
+  --surface-muted: #172338;
+  --border-soft: #26364d;
+  --border-strong: #31475b;
+  --text-main: #f4f8fc;
+  --text-muted: #a8b8ca;
+  --accent-primary: #ff7a18;
+  --accent-primary-hover: #ff9652;
+  --accent-cyan: #4ba8ff;
+  --accent-sky: #7ac9ff;
+  --buy: #34d0b0;
+  --sell: #ff6b8f;
+  --warning: #f2b04a;
+  --tooltip-bg: rgba(10, 17, 28, 0.97);
+  --tooltip-border: rgba(255, 122, 24, 0.3);
+  --tooltip-text: #f1f6fc;
+  --tooltip-muted: #91a2b5;
+  --shadow-panel: 0 16px 42px rgba(0, 0, 0, 0.34);
+  --shadow-hover: 0 22px 50px rgba(0, 0, 0, 0.42);
+  --filter-card-bg: linear-gradient(180deg, rgba(19, 27, 39, 0.98), rgba(14, 21, 32, 0.97));
+  --filter-card-border: rgba(255, 255, 255, 0.12);
+  --filter-card-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 10px 24px rgba(2, 6, 23, 0.22);
+  --filter-text: #f1f5f9;
+  --filter-muted: #94a3b8;
+  --filter-input-bg: rgba(15, 23, 42, 0.72);
+  --filter-input-border: rgba(71, 85, 105, 0.72);
+  --filter-input-focus: #7c9cff;
+  --filter-focus-ring: rgba(124, 156, 255, 0.18);
+  --filter-placeholder: rgba(148, 163, 184, 0.85);
+  --filter-chip-bg: rgba(15, 23, 42, 0.72);
+  --filter-chip-border: rgba(71, 85, 105, 0.72);
+  --filter-chip-hover: rgba(224, 106, 162, 0.13);
+  --filter-chip-active-bg: rgba(99, 102, 241, 0.16);
+  --filter-chip-active-text: #dbeafe;
+  color: var(--text-main);
+}
+
+.app-shell.color-dark {
+  background:
+    radial-gradient(circle at 8% 10%, rgba(74, 137, 231, 0.16), transparent 28%),
+    radial-gradient(circle at 86% 8%, rgba(255, 122, 24, 0.16), transparent 30%),
+    linear-gradient(180deg, #0f1218 0%, #121722 58%, #0d1118 100%);
+}
+
+.login-shell.color-dark .login-atmosphere {
+  background:
+    radial-gradient(circle at 12% 12%, rgba(74, 137, 231, 0.18), transparent 28%),
+    radial-gradient(circle at 86% 18%, rgba(255, 122, 24, 0.16), transparent 30%),
+    linear-gradient(180deg, #0f1218, #121722 58%, #0d1118);
+}
+
+.app-shell.color-dark .topbar {
+  border-bottom-color: var(--border-soft);
+  background: rgba(8, 14, 24, 0.92);
+  backdrop-filter: blur(18px);
+}
+
+.app-shell.color-dark .brand-mark {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-cyan));
+  color: #ffffff;
+}
+
+.app-shell.color-dark .icon-button {
+  border-color: var(--border-soft);
+  background: rgba(20, 33, 54, 0.86);
+  color: var(--text-main);
+}
+
+.app-shell.color-dark .icon-button:hover,
+.app-shell.color-dark .icon-button.active {
+  border-color: var(--accent-primary);
+  background: rgba(255, 122, 24, 0.14);
+  color: var(--accent-primary);
+}
+
+.app-shell.color-dark nav button {
+  color: #9ca8bd;
+}
+
+.app-shell.color-dark nav button:hover {
+  border-color: rgba(226, 232, 240, 0.28);
+  background: rgba(226, 232, 240, 0.08);
+  color: #f8fafc;
+}
+
+.app-shell.color-dark nav button.active {
+  border-color: rgba(255, 255, 255, 0.72);
+  background: rgba(74, 137, 231, 0.16);
+  color: #dcefff;
+  box-shadow:
+    inset 0 0 0 1px rgba(74, 137, 231, 0.2),
+    0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+.app-shell.color-dark :where(.brand, h1, h2, h3, .market-tile strong, .setting-card strong, .metric-card strong, .feature-card strong, .flow-stack div, .strong-cell, .profile-identity strong, .market-card-heading strong, .movement-card-title strong),
+.login-shell.color-dark :where(h1, h2, h3, .login-panel strong) {
+  color: var(--text-main);
+}
+
+.app-shell.color-dark :where(.brand small, .page-kicker, .intro-text, .feature-card p, .market-tile small, .metric-card span, .metric-card small, .ratio-item span, .setting-card p, .helper-text, .chart-help, label, .profile-identity span, footer),
+.login-shell.color-dark :where(.intro-text, .helper-text, label) {
+  color: var(--text-muted);
+}
+
+.app-shell.color-dark :where(.intro-copy, .market-panel, .system-panel, .page-section, .cw-movement-panel, .feature-card, .metric-card, .ratio-item, .setting-card, .chart-card, .table-wrap, .market-tile, .brief-item, .mini-chart, .market-kpi, .market-workbench-card, .movement-card, .filters, .quick-filters, .filter-presets),
+.login-shell.color-dark .login-panel {
+  border-color: var(--border-soft);
+  background:
+    linear-gradient(180deg, rgba(21, 29, 42, 0.98), rgba(15, 22, 34, 0.96)),
+    var(--surface-panel);
+  box-shadow: var(--shadow-panel);
+}
+
+.app-shell.color-dark :where(.market-visual, .flow-stack, .cw-movement-panel, .market-breadth-chart, .sector-flow-map, .interactive-chart, .candle-chart),
+.login-shell.color-dark .login-grid-plane {
+  background:
+    linear-gradient(rgba(69, 81, 102, 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(69, 81, 102, 0.38) 1px, transparent 1px),
+    #151a23;
+  background-size: 24px 24px;
+}
+
+.app-shell.color-dark .movement-card {
+  background:
+    linear-gradient(180deg, rgba(24, 31, 44, 0.98), rgba(16, 23, 34, 0.98)),
+    #141922;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.app-shell.color-dark :where(.movement-card-title span, .pie-legend span, .flow-row, .movement-header small) {
+  color: #c3ccda;
+}
+
+.app-shell.color-dark :where(.movement-card-title strong, .flow-row strong) {
+  color: #f8fafc;
+}
+
+.app-shell.color-dark .flow-track,
+.app-shell.color-dark :where(.breadth-allocation, .signal-mix) {
+  background: #2b3342;
+}
+
+.app-shell.color-dark :where(.signal-pie circle:first-child, .market-donut-wrap circle:first-child) {
+  stroke: #2b3342;
+}
+
+.app-shell.color-dark .cw-heatmap button {
+  border-color: rgba(160, 182, 208, 0.28);
+  background:
+    linear-gradient(135deg, rgba(70, 112, 160, 0.24), rgba(255, 255, 255, 0.06)),
+    #162132;
+  color: #f8fafc;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.app-shell.color-dark .cw-heatmap button:hover {
+  border-color: rgba(255, 255, 255, 0.64);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.16),
+    0 12px 26px rgba(0, 0, 0, 0.24);
+}
+
+.app-shell.color-dark .cw-heatmap button.up {
+  background:
+    linear-gradient(135deg, rgba(31, 138, 111, 0.92), rgba(56, 109, 198, 0.86)),
+    #142838;
+}
+
+.app-shell.color-dark .cw-heatmap button.down {
+  background:
+    linear-gradient(135deg, rgba(235, 109, 73, 0.92), rgba(183, 60, 68, 0.88)),
+    #21171f;
+}
+
+.app-shell.color-dark .cw-heatmap button.flat {
+  background:
+    linear-gradient(135deg, rgba(122, 142, 175, 0.9), rgba(73, 93, 123, 0.9)),
+    #1b2534;
+}
+
+.app-shell.color-dark :where(.filters, .quick-filters, .filter-presets) {
+  border-color: rgba(226, 232, 240, 0.22);
+  background:
+    linear-gradient(180deg, rgba(29, 35, 48, 0.98), rgba(19, 24, 33, 0.98)),
+    #151a23;
+}
+
+.app-shell.color-dark :where(.filters label, .quick-filters label, .filter-presets label) {
+  color: #d8dee8;
+}
+
+.app-shell.color-dark :where(.secondary-button, .ui-button-secondary, .chart-toolbar button, .segmented-control, input, select, .preset-chip, .market-sort-tabs),
+.login-shell.color-dark :where(input, select) {
+  border-color: var(--border-soft);
+  background: linear-gradient(180deg, #111b2a 0%, #0f1723 100%);
+  color: var(--text-main);
+}
+
+.app-shell.color-dark :where(.table-wrap, .chart-card, .metric-card, .feature-card, .ratio-item, .setting-card, .market-tile, .brief-item, .mini-chart, .page-section, .market-panel, .system-panel, .movement-card, .filters, .quick-filters, .filter-presets) {
+  border-color: var(--border-soft);
+  background: linear-gradient(180deg, rgba(14, 23, 36, 0.96), rgba(9, 16, 27, 0.96));
+  box-shadow: var(--shadow-panel);
+}
+
+.app-shell.color-dark :where(input::placeholder, select::placeholder),
+.login-shell.color-dark :where(input::placeholder, select::placeholder) {
+  color: #8f9aab;
+  opacity: 1;
+}
+
+.app-shell.color-dark :where(.secondary-button:hover, .ui-button-secondary:hover, .ui-button-ghost:hover, .chart-toolbar button:hover, .preset-chip button:hover, .market-sort-tabs button:hover, .market-sort-tabs button.active),
+.login-shell.color-dark .login-button:hover {
+  border-color: var(--accent-primary);
+  background: rgba(224, 106, 162, 0.13);
+  color: var(--accent-primary);
+}
+
+.app-shell.color-dark :where(.primary-button, .ui-button-default),
+.login-shell.color-dark .primary-button {
+  border-color: rgba(255, 122, 24, 0.3);
+  background: linear-gradient(135deg, #ff8a2b 0%, #2f8ef7 100%);
+  color: #ffffff;
+  box-shadow: 0 14px 34px rgba(47, 142, 247, 0.24);
+}
+
+.app-shell.color-dark :where(.primary-button:hover, .ui-button-default:hover),
+.login-shell.color-dark .primary-button:hover {
+  background: var(--accent-primary-hover);
+}
+
+.app-shell.color-dark :where(.brand-eyebrow, .link-button) {
+  border-color: rgba(47, 142, 247, 0.28);
+  background: rgba(47, 142, 247, 0.12);
+  color: #dcefff;
+}
+
+.app-shell.color-dark :where(th, .market-card-heading, .market-board-tools, .selected-stock-action, .news-list) {
+  background: #171d27;
+  color: var(--text-muted);
+}
+
+.app-shell.color-dark :where(th, td, .panel-header, .market-card-heading, .selected-stock-action, .secret-status-row, .news-item) {
+  border-color: var(--border-soft);
+}
+
+.app-shell.color-dark :where(.market-card-heading strong, .market-board-tools strong) {
+  color: var(--text-main);
+}
+
+.app-shell.color-dark :where(.market-card-heading small, .market-source-line, .market-empty-state) {
+  color: #b6c0cf;
+}
+
+.app-shell.color-dark .market-search-suggestions {
+  border-color: var(--border-strong);
+  background: #141922;
+  box-shadow: var(--shadow-hover);
+}
+
+.app-shell.color-dark .market-search-suggestions button {
+  border-bottom-color: var(--border-soft);
+  background: #141922;
+  color: var(--text-main);
+}
+
+.app-shell.color-dark .market-search-suggestions button:hover {
+  background: rgba(74, 137, 231, 0.14);
+}
+
+.app-shell.color-dark tbody tr:hover,
+.app-shell.color-dark tbody tr.selected-row {
+  background: rgba(255, 122, 24, 0.12);
+  box-shadow: inset 3px 0 0 var(--accent-primary);
+}
+
+.app-shell.color-dark tbody tr:hover .strong-cell {
+  color: var(--accent-primary);
+}
+
+.app-shell.color-dark :where(.brief-item.success, .status-pill.success, .badge-success, .badge-success-strong) {
+  border-color: rgba(72, 214, 181, 0.35);
+  background: rgba(72, 214, 181, 0.12);
+  color: #9cf0da;
+}
+
+.app-shell.color-dark :where(.brief-item.danger, .status-pill.danger, .badge-danger, .notice.error),
+.login-shell.color-dark .notice.error {
+  border-color: rgba(243, 107, 138, 0.42);
+  background: rgba(243, 107, 138, 0.12);
+  color: #ffb4c5;
+}
+
+.app-shell.color-dark :where(.notice.loading, .notice.info) {
+  border-color: rgba(119, 183, 238, 0.42);
+  background: rgba(119, 183, 238, 0.12);
+  color: #b9dcff;
+}
+
+.app-shell.color-dark :where(.chart-card, .chart-tooltip, .candle-tooltip, .app-tooltip, .profile-popover) {
+  border-color: var(--border-soft);
+  background: rgba(20, 24, 32, 0.98);
+  color: var(--text-main);
+}
+
+.app-shell.color-dark .news-item {
+  background: #121a27;
+}
+
+.app-shell.color-dark .news-item:hover,
+.app-shell.color-dark .news-item.related {
+  background: rgba(74, 137, 231, 0.14);
+  box-shadow: inset 3px 0 0 var(--accent-primary);
+}
+
+.app-shell.color-dark :where(.news-item h3, .news-item .news-title-link) {
+  color: #f8fafc;
+}
+
+.app-shell.color-dark .news-item .news-title-link:hover {
+  color: #8ec5ff;
+}
+
+.app-shell.color-dark .news-item p {
+  color: #c3ccda;
+}
+
+.app-shell.color-dark .news-item a {
+  color: #8ec5ff;
+}
+
+.app-shell.color-dark .news-meta {
+  color: #aeb8c7;
+}
+
+.app-shell.color-dark .news-meta button {
+  border-color: rgba(72, 214, 181, 0.38);
+  background: rgba(72, 214, 181, 0.14);
+  color: #a8f5df;
+}
+
+.app-shell.color-dark :where(.news-list, .brief-list, .market-table-scroll, .table-wrap) {
+  scrollbar-color: #5f6b7f #121722;
+}
+
+.app-shell.color-dark :where(.grid-line, .candle-chart .grid-line) {
+  stroke: #2c3443;
+}
+
+.app-shell.color-dark :where(.axis-label, .candle-chart .axis-label) {
+  fill: #a8b1c2;
+}
+
+.app-shell.color-dark :where(.hover-line, .candle-chart .hover-line) {
+  stroke: #e5e7eb;
+}
+
+.app-shell.color-dark .kpi-group-heading {
+  border-bottom-color: var(--border-soft);
+}
+
+.app-shell.color-dark .kpi-group-heading span {
+  color: #ffc9e2;
+}
+
+.app-shell.color-dark .kpi-group-heading p {
+  color: var(--text-muted);
+}
+
+.app-shell.color-dark .description-box {
+  border-left-color: var(--accent-primary);
+  background: rgba(224, 106, 162, 0.1);
+  color: var(--text-main);
+}
+
+.app-shell.color-dark :where(.profile-popover-head, .admin-card) {
+  background:
+    linear-gradient(135deg, rgba(224, 106, 162, 0.18), rgba(90, 155, 210, 0.12)),
+    #171d27;
+}
+
+.login-shell.color-dark :where(.login-market-chip) {
+  border-color: rgba(226, 232, 240, 0.22);
+  background: rgba(20, 24, 32, 0.72);
+  color: #ffd6e9;
+}
+
+/* 🔧 FIREANT-LIKE DARK MODE OVERRIDES */
+.app-shell.color-dark :where(.brand-eyebrow, .link-button, .kpi-group-heading span, .news-item .news-title-link:hover, .news-item a, .hero-metric > span, .market-search-suggestions button:hover, .suggestion-chip:hover, .cw-heatmap button:hover) {
+  border-color: rgba(47, 142, 247, 0.28);
+  background: rgba(47, 142, 247, 0.12);
+  color: #dcefff;
+}
+
+.app-shell.color-dark :where(.market-tile.highlight, .brief-item.success, .brief-item.danger, .hero-metric > span, .market-search-suggestions button:hover, .suggestion-chip:hover) {
+  background: linear-gradient(135deg, rgba(47, 142, 247, 0.14), rgba(255, 122, 24, 0.12));
+}
+
+.app-shell.color-dark :where(.news-item .news-title-link:hover, .news-item a, .news-item .news-title-link) {
+  color: #dcefff;
+}
+
+/* 🤖 AI CHAT WIDGET DARK MODE OVERRIDES */
+.app-shell.color-dark .ai-chat-window-panel {
+  background: var(--surface-panel);
+  border-color: var(--border-soft);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+}
+
+.app-shell.color-dark .ai-chat-header {
+  background: var(--surface-muted);
+  border-bottom-color: var(--border-soft);
+}
+
+.app-shell.color-dark .ai-chat-header-title {
+  color: var(--text-main);
+}
+
+.app-shell.color-dark .ai-chat-header-actions button {
+  color: var(--text-muted);
+}
+
+.app-shell.color-dark .ai-chat-header-actions button:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-main);
+}
+
+.app-shell.color-dark .chat-message-row.assistant .bubble {
+  background: var(--surface-muted);
+  border-color: var(--border-soft);
+  color: var(--text-main);
+}
+
+.app-shell.color-dark .chat-message-row.assistant .bubble * {
+  color: inherit;
+}
+
+.app-shell.color-dark .chat-message-row.assistant .avatar {
+  background: rgba(224, 106, 162, 0.15);
+  color: var(--accent-primary);
+}
+
+.app-shell.color-dark .ai-chat-suggestions-ribbon {
+  border-top-color: var(--border-soft);
+}
+
+.app-shell.color-dark .suggestion-chip {
+  background: var(--surface-bg);
+  border-color: var(--border-soft);
+  color: var(--text-muted);
+}
+
+.app-shell.color-dark .suggestion-chip:hover {
+  background: var(--surface-muted);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+.app-shell.color-dark .ai-chat-input-row {
+  background: var(--surface-bg);
+  border-top-color: var(--border-soft);
+}
+
+/* 🔄 AUTO-REFRESH TOGGLE DARK MODE */
+.app-shell.color-dark .auto-refresh-container {
+  background: var(--surface-panel);
+  border-color: var(--border-soft);
+}
+
+.app-shell.color-dark .auto-refresh-container:hover {
+  background: var(--surface-muted);
+  border-color: var(--accent-primary);
+}
+
+.app-shell.color-dark .auto-refresh-label {
+  color: var(--text-main);
+}
+
+/* 🏆 HERO METRICS DARK MODE OVERRIDES */
+.app-shell.color-dark .hero-metric {
+  border-left-color: rgba(224, 106, 162, 0.4);
+}
+
+.app-shell.color-dark .hero-metric > span {
+  background: linear-gradient(135deg, rgba(224, 106, 162, 0.25), rgba(90, 155, 210, 0.25));
+  color: var(--accent-primary);
+}
+
+.app-shell.color-dark .hero-metric small {
+  color: var(--text-muted);
+}
+
+.app-shell.color-dark .hero-metric strong {
+  color: var(--text-main);
+}
+
+/* 📈 PREMIUM BRIEF PANEL & TILES DARK MODE */
+.app-shell.color-dark .market-tile {
+  background: linear-gradient(180deg, rgba(22, 26, 34, 0.95), rgba(15, 18, 24, 0.95));
+  border-color: var(--border-soft);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.app-shell.color-dark .market-tile strong {
+  color: var(--text-main);
+}
+
+.app-shell.color-dark .market-tile.highlight {
+  background: linear-gradient(135deg, rgba(224, 106, 162, 0.12), rgba(90, 155, 210, 0.1));
+  border-color: rgba(224, 106, 162, 0.3);
+}
+
+.app-shell.color-dark .market-tile.highlight.danger {
+  background: linear-gradient(135deg, rgba(243, 107, 138, 0.15), rgba(20, 24, 32, 0.8));
+  border-color: rgba(243, 107, 138, 0.4);
+}
+
+.app-shell.color-dark .market-tile.highlight.danger strong {
+  color: #f36b8a;
+}
+
+.app-shell.color-dark .brief-item {
+  background: rgba(22, 26, 34, 0.75);
+  backdrop-filter: blur(12px);
+  border-color: rgba(255, 255, 255, 0.06);
+  color: var(--text-main);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.app-shell.color-dark .brief-item:hover {
+  border-color: rgba(224, 106, 162, 0.45);
+  box-shadow: 0 8px 24px rgba(224, 106, 162, 0.18);
+  transform: translateY(-2px);
+}
+
+.app-shell.color-dark .brief-item span {
+  color: var(--accent-primary);
+}
+
+.app-shell.color-dark .brief-item strong {
+  color: var(--text-main);
+}
+
+.app-shell.color-dark .brief-item.success {
+  border-color: rgba(72, 214, 181, 0.35);
+  background: linear-gradient(135deg, rgba(72, 214, 181, 0.1), rgba(20, 24, 32, 0.8));
+}
+
+.app-shell.color-dark .brief-item.success span,
+.app-shell.color-dark .brief-item.success strong {
+  color: #48d6b5;
+}
+
+.app-shell.color-dark .brief-item.danger {
+  border-color: rgba(243, 107, 138, 0.38);
+  background: linear-gradient(135deg, rgba(243, 107, 138, 0.1), rgba(20, 24, 32, 0.8));
+}
+
+.app-shell.color-dark .brief-item.danger span,
+.app-shell.color-dark .brief-item.danger strong {
+  color: #f36b8a;
+}
+
+/* 🌌 FUTURISTIC GLOW FOR HERO MARKET PANEL (RIGHT SIDE) */
+.app-shell.color-dark .hero-market-panel {
+  background: 
+    radial-gradient(circle at 90% 10%, rgba(224, 106, 162, 0.18), transparent 45%),
+    radial-gradient(circle at 10% 90%, rgba(90, 155, 210, 0.14), transparent 45%),
+    linear-gradient(180deg, rgba(22, 26, 35, 0.95), rgba(15, 18, 24, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 24px 48px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* ⚡️ SCI-FI SHINE & GLOW FOR THE TOP SIGNAL CARD */
+.app-shell.color-dark .market-tile.highlight {
+  background: 
+    linear-gradient(135deg, rgba(224, 106, 162, 0.22), rgba(90, 155, 210, 0.2)),
+    rgba(22, 26, 34, 0.9);
+  border: 1px solid rgba(224, 106, 162, 0.45);
+  box-shadow: 
+    0 12px 28px rgba(224, 106, 162, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.app-shell.color-dark .market-tile.highlight::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: shineAnimation 6s infinite ease-in-out;
+}
+
+@keyframes shineAnimation {
+  0% { left: -100%; }
+  35% { left: 200%; }
+  100% { left: 200%; }
+}
+
+/* 🏷️ LINK BUTTON AS GLOWING PILL */
+.app-shell.color-dark .hero-market-panel .link-button {
+  background: rgba(224, 106, 162, 0.15) !important;
+  color: var(--accent-primary) !important;
+  border: 1px solid rgba(224, 106, 162, 0.3) !important;
+  padding: 0.25rem 0.75rem !important;
+  border-radius: 999px !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 0 0 0 rgba(224, 106, 162, 0);
+}
+
+.app-shell.color-dark .hero-market-panel .link-button:hover {
+  background: var(--accent-primary) !important;
+  color: #121722 !important;
+  box-shadow: 0 4px 12px rgba(224, 106, 162, 0.35) !important;
+  transform: translateY(-1px);
+}
+
+/* 📊 STATS TILES COLORING & CENTERING */
+.market-tile-row {
+  gap: 0.75rem;
+}
+
+.market-tile-row .market-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.85rem;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(148, 163, 184, 0.26);
+  border-radius: 0.85rem;
+}
+
+.market-tile-row .market-tile span {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 0.2rem;
+  font-weight: 700;
+}
+
+.market-tile-row .market-tile strong {
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+
+.market-tile-row .market-tile:first-child strong {
+  color: var(--buy, #008b7a);
+  text-shadow: 0 0 8px rgba(0, 139, 122, 0.15);
+}
+
+.market-tile-row .market-tile:nth-child(2) strong {
+  color: var(--warning, #c9952f);
+  text-shadow: 0 0 8px rgba(201, 149, 47, 0.15);
+}
+
+.market-tile-row .market-tile:last-child strong {
+  color: var(--sell, #d94a6f);
+  text-shadow: 0 0 8px rgba(217, 74, 111, 0.15);
+}
+
+.app-shell.color-dark .market-tile-row .market-tile {
+  background: rgba(22, 26, 34, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.app-shell.color-dark .market-tile-row .market-tile:first-child strong {
+  color: #48d6b5; /* bright cyan-green for buy signals count */
+  text-shadow: 0 0 8px rgba(72, 214, 181, 0.25);
+}
+
+.app-shell.color-dark .market-tile-row .market-tile:nth-child(2) strong {
+  color: #f8a835; /* bright orange/yellow for consider signals count */
+  text-shadow: 0 0 8px rgba(248, 168, 53, 0.25);
+}
+
+.app-shell.color-dark .market-tile-row .market-tile:last-child strong {
+  color: #f36b8a; /* bright pink-red for skip signals count */
+  text-shadow: 0 0 8px rgba(243, 107, 138, 0.25);
+}
+
+
+
+
+
+

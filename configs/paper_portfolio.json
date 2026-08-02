@@ -1,0 +1,52 @@
+{
+    "cash": 76015076.5,
+    "initial_cash": 100000000.0,
+    "positions": {
+        "CMBB2517": {
+            "symbol": "CMBB2517",
+            "underlying": "MBB",
+            "qty": 2300,
+            "buy_price": 3930.0,
+            "buy_date": "2026-06-13T00:38:39.110001",
+            "settlement_date": "2026-06-16T13:00:00",
+            "total_cost": 9052558.5,
+            "score_at_buy": 69.3,
+            "days_at_buy": 101
+        },
+        "CACB2511": {
+            "symbol": "CACB2511",
+            "underlying": "ACB",
+            "qty": 7100,
+            "buy_price": 2100.0,
+            "buy_date": "2026-06-15T13:10:40.997907",
+            "settlement_date": "2026-06-17T13:00:00",
+            "total_cost": 14932365.0,
+            "score_at_buy": 70.26636962835028,
+            "days_at_buy": 99
+        }
+    },
+    "history": [
+        {
+            "symbol": "CMBB2517",
+            "underlying": "MBB",
+            "type": "BUY",
+            "qty": 2300,
+            "price": 3930.0,
+            "value": 9039000.0,
+            "fee": 13558.5,
+            "date": "2026-06-13T00:38:39.110001",
+            "reason": "Volatility Arbitrage Signal (Score: 69.3) | Kelly Size 9.3%"
+        },
+        {
+            "symbol": "CACB2511",
+            "underlying": "ACB",
+            "type": "BUY",
+            "qty": 7100,
+            "price": 2100.0,
+            "value": 14910000.0,
+            "fee": 22365.0,
+            "date": "2026-06-15T13:10:40.997907",
+            "reason": "V5.3 Adaptive Signal (Score: 70.3) | V5.3 Momentum Static 15%"
+        }
+    ]
+}

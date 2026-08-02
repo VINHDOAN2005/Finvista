@@ -1,0 +1,78 @@
+# Dependencies
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.pyc
+.Python
+
+# Build outputs
+dist/
+build/
+*.egg-info/
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+*.bak
+*.tmp
+
+# Environment - NEVER COMMIT SECRETS
+.env
+.env.local
+*.env
+
+# Database & Runtime Data (NEVER commit data artifacts)
+*.duckdb
+*.duckdb.wal
+*.db
+*.sqlite
+*.pkl
+data/
+!data/.gitkeep
+
+# ML artifacts (large binaries; JSON configs may be tracked selectively)
+artifacts/*.pkl
+
+# Temporary & Cache
+cache/
+.cache/
+*.cache
+coverage/
+.pytest_cache/
+*.log
+logs/
+vnstock_source_backup/
+
+# Project Specific Temp Files
+cw_metadata_dump.json
+debug_*.txt
+*_output.txt
+reports/
+cw_evaluation_results.csv
+cw_ranking_results.csv
+
+# Excel Temporary
+~$*
+*.xlsx
+
+# Scratch directory
+scratch/
+catboost_info/
+
+# Excluded Academic / School Documents
+docs/academic/
+docs/research/lectures/
+docs/knowledge_base/
+docs/img/
+
+# Excluded Launchers
+Start_Finvista_API.bat
+
+# Runtime outputs and artifacts
+results/
+artifacts/

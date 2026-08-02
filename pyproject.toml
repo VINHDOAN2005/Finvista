@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "finvista"
+version = "3.0.0"
+description = "Quantitative Covered Warrant Core Engine & Enterprise API Gateway (Vietnamese markets)"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.9"
+dynamic = ["dependencies"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
+
+[tool.setuptools.package-dir]
+"finvista" = "src"
+
+[tool.setuptools]
+packages = [
+    "finvista",
+    "finvista.api",
+    "finvista.api.routes",
+    "finvista.core",
+    "finvista.infra",
+    "finvista.modules",
+    "finvista.modules.credit_risk",
+    "finvista.modules.credit_risk.etl",
+    "finvista.modules.credit_risk.models",
+    "finvista.modules.credit_risk.systemic",
+    "finvista.modules.cw_pricing",
+    "finvista.modules.cw_pricing.backtest",
+    "finvista.modules.cw_pricing.etl",
+    "finvista.modules.cw_pricing.models",
+    "finvista.modules.news_impact",
+    "finvista.modules.regime_analysis",
+    "finvista.modules.regime_analysis.etl",
+    "finvista.modules.regime_analysis.forecasting",
+    "finvista.modules.regime_analysis.indicators",
+    "finvista.modules.regime_analysis.portfolio",
+    "finvista.modules.trading_engine",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.pyrefly]
+# Project is run from Finvista/ root: `uvicorn src.api.main:app`
+# All code uses `from src.xxx import ...` — project root must be in search_paths
+search_paths = ["."]

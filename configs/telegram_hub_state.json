@@ -1,0 +1,104 @@
+{
+    "CW_OPPORTUNITY:CACB2608": {
+        "timestamp": "2026-06-23T14:03:43.918534",
+        "score": 77.39906884312379,
+        "signal": "STRONG BUY",
+        "count": 1
+    },
+    "CW_OPPORTUNITY:CACB2607": {
+        "timestamp": "2026-06-23T14:03:43.918534",
+        "score": 77.35340701832835,
+        "signal": "STRONG BUY",
+        "count": 1
+    },
+    "CW_OPPORTUNITY:CSTB2604": {
+        "timestamp": "2026-06-23T14:03:43.918534",
+        "score": 75.59862490950303,
+        "signal": "STRONG BUY",
+        "count": 1
+    },
+    "CW_OPPORTUNITY:CSTB2603": {
+        "timestamp": "2026-06-23T14:03:43.918534",
+        "score": 75.22089876186189,
+        "signal": "STRONG BUY",
+        "count": 1
+    },
+    "CW_OPPORTUNITY:CACB2606": {
+        "timestamp": "2026-06-23T14:03:43.918534",
+        "score": 75.1134463820517,
+        "signal": "STRONG BUY",
+        "count": 1
+    },
+    "CW_OPPORTUNITY:CACB2511": {
+        "timestamp": "2026-06-23T14:03:43.918534",
+        "score": 73.61054383194723,
+        "signal": "BUY",
+        "count": 1
+    },
+    "CW_OPPORTUNITY:CACB2604": {
+        "timestamp": "2026-06-23T14:03:43.918534",
+        "score": 73.56044850042714,
+        "signal": "BUY",
+        "count": 1
+    },
+    "CW_OPPORTUNITY:CACB2603": {
+        "timestamp": "2026-06-23T14:03:43.918534",
+        "score": 70.95204739050777,
+        "signal": "BUY",
+        "count": 1
+    },
+    "CW_OPPORTUNITY:CVIB2604": {
+        "timestamp": "2026-06-23T14:03:43.918534",
+        "score": 70.62263069484483,
+        "signal": "BUY",
+        "count": 1
+    },
+    "CW_OPPORTUNITY:CSTB2609": {
+        "timestamp": "2026-06-23T14:03:43.918534",
+        "score": 68.73929706975055,
+        "signal": "BUY",
+        "count": 1
+    },
+    "CW_OPPORTUNITY:CSTB2602": {
+        "timestamp": "2026-06-23T14:03:43.918534",
+        "score": 68.42587573189124,
+        "signal": "BUY",
+        "count": 1
+    },
+    "CW_OPPORTUNITY:CMBB2603": {
+        "timestamp": "2026-06-23T14:03:43.918534",
+        "score": 67.7985046965709,
+        "signal": "BUY",
+        "count": 1
+    },
+    "CW_OPPORTUNITY:CMBB2517": {
+        "timestamp": "2026-06-23T14:03:43.918534",
+        "score": 66.70801572361252,
+        "signal": "BUY",
+        "count": 1
+    },
+    "CW_OPPORTUNITY:CVIB2601": {
+        "timestamp": "2026-06-23T14:03:43.918534",
+        "score": 66.57720078073064,
+        "signal": "BUY",
+        "count": 1
+    },
+    "CW_OPPORTUNITY:CMBB2605": {
+        "timestamp": "2026-06-23T14:03:43.918534",
+        "score": 66.53731827037572,
+        "signal": "BUY",
+        "count": 1
+    },
+    "CW_OPPORTUNITY:CACB2605": {
+        "timestamp": "2026-06-23T14:03:43.918534",
+        "score": 66.51182575873298,
+        "signal": "BUY",
+        "count": 1
+    },
+    "CW_OPPORTUNITY:CMBB2606": {
+        "timestamp": "2026-06-23T14:03:43.918534",
+        "score": 65.13075416206856,
+        "signal": "BUY",
+        "count": 1
+    }
+}
