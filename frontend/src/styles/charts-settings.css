@@ -265,7 +265,7 @@
 .settings-group-title span {
   display: block;
   margin-bottom: 0.25rem;
-  color: #0f766e;
+  color: var(--accent-primary, #ff7a18);
   font-size: 0.82rem;
   font-weight: 900;
   text-transform: uppercase;
@@ -273,12 +273,62 @@
 
 .settings-group-title p {
   margin-bottom: 0.55rem;
-  color: #64748b;
+  color: var(--text-muted, #64748b);
   font-size: 0.9rem;
 }
 
 .setting-card {
   padding: 1rem;
+}
+
+.setting-card span {
+  color: var(--text-muted);
+}
+
+.setting-card strong {
+  color: var(--text-main);
+}
+
+.setting-card p {
+  margin-bottom: 1rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.setting-row select {
+  width: 100%;
+  min-height: 2.5rem;
+  padding: 0.55rem 2.5rem 0.55rem 0.75rem;
+  border: 1px solid var(--control-border);
+  border-radius: 0.45rem;
+  background-color: var(--control-bg);
+  color: var(--control-text);
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-position: right 0.75rem center;
+  background-size: 0.9rem 0.9rem;
+  background-repeat: no-repeat;
+}
+
+.setting-row select:focus {
+  border-color: var(--control-accent);
+  outline: 3px solid var(--control-focus-ring);
+}
+
+.toggle-line {
+  display: flex;
+  grid-template-columns: none;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--text-main);
+  font-size: 0.9rem;
+}
+
+.toggle-line input {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--accent-primary);
 }
 
 .admin-settings-grid {
@@ -320,12 +370,6 @@
   text-align: right;
 }
 
-.setting-card p {
-  margin-bottom: 1rem;
-  color: #64748b;
-  line-height: 1.55;
-}
-
 .setting-row {
   display: grid;
   gap: 0.7rem;
@@ -338,10 +382,10 @@
 .segmented-control {
   display: inline-flex;
   gap: 0.25rem;
-  border: 1px solid #cbd5e1;
+  border: 1px solid var(--control-border, #cbd5e1);
   border-radius: 999px;
   padding: 0.2rem;
-  background: #ffffff;
+  background: var(--control-bg-muted, #ffffff);
 }
 
 .segmented-control button {
@@ -350,7 +394,7 @@
   border-radius: 999px;
   padding: 0.45rem 0.75rem;
   background: transparent;
-  color: #64748b;
+  color: var(--control-muted, #64748b);
   font-weight: 800;
 }
 
@@ -381,28 +425,13 @@
 }
 
 .segmented-control button.active {
-  background: #0f766e;
-  color: #ffffff;
+  background: var(--accent-primary, #ff7a18);
+  color: #121722;
 }
 
 .segmented-control button:disabled {
   cursor: not-allowed;
   opacity: 0.55;
-}
-
-.toggle-line {
-  display: flex;
-  grid-template-columns: none;
-  align-items: center;
-  gap: 0.6rem;
-  color: #334155;
-  font-size: 0.9rem;
-}
-
-.toggle-line input {
-  width: 1rem;
-  height: 1rem;
-  accent-color: #0f766e;
 }
 
 .backend-tools {

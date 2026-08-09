@@ -1,0 +1,223 @@
+/* Terminal polish — FireAnt / vnstock data-dense layout refinements */
+
+main {
+  max-width: 1280px;
+}
+
+.page-section,
+.intro-copy,
+.market-panel,
+.system-panel {
+  border-radius: 0.65rem;
+}
+
+.section-heading h2 {
+  letter-spacing: -0.02em;
+}
+
+/* Financial data: tabular numbers */
+.metric-card strong,
+.ratio-item strong,
+.market-tile strong,
+.brief-item strong,
+.signal-card-metric strong,
+.signal-card-ticker,
+.strong-cell,
+td,
+th,
+.hero-metric strong,
+.probability-values strong {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Table terminal styling */
+.table-wrap {
+  border-radius: 0.55rem;
+  overflow: hidden;
+}
+
+.table-wrap th {
+  background: var(--surface-muted);
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+tbody tr:hover {
+  background: rgba(255, 122, 24, 0.06);
+  box-shadow: inset 3px 0 0 var(--accent-primary);
+}
+
+tbody tr:hover .strong-cell {
+  background: rgba(255, 122, 24, 0.1);
+  color: var(--accent-primary);
+}
+
+.app-shell.color-dark tbody tr:hover {
+  background: rgba(255, 122, 24, 0.08);
+}
+
+.app-shell.color-dark tbody tr:hover .strong-cell {
+  background: rgba(255, 122, 24, 0.14);
+  color: #ffb366;
+}
+
+/* Credit health hero */
+.credit-hero-card {
+  border-color: rgba(255, 122, 24, 0.2);
+  border-radius: 0.65rem;
+  background: var(--surface-panel);
+  box-shadow: var(--shadow-panel);
+}
+
+.app-shell.color-dark .credit-hero-card {
+  border-color: rgba(255, 122, 24, 0.28);
+}
+
+/* Filter bar — compact terminal strip */
+.filter-shell,
+.filters,
+.quick-filters {
+  border-radius: 0.55rem;
+}
+
+/* Market workbench panels */
+.market-workbench-card,
+.market-kpi {
+  border-radius: 0.55rem;
+}
+
+.market-kpi strong {
+  font-size: 1.35rem;
+}
+
+/* Footer subtle */
+footer {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.app-shell.color-dark .filter-chip-hover,
+.app-shell.color-dark .filter-chip:hover {
+  background: rgba(255, 122, 24, 0.12);
+}
+
+/* ── Dark mode: Settings controls (zoom / pan / appearance) ── */
+.app-shell.color-dark .segmented-control {
+  background: var(--control-bg-muted);
+  border-color: var(--border-soft);
+  color: var(--text-muted);
+}
+
+.app-shell.color-dark .segmented-control button {
+  color: var(--text-muted);
+}
+
+.app-shell.color-dark .segmented-control button:hover {
+  background: rgba(255, 122, 24, 0.1);
+  color: #ffb366;
+}
+
+.app-shell.color-dark .segmented-control button.active {
+  background: var(--accent-primary);
+  color: #121722;
+}
+
+.app-shell.color-dark .setting-row select,
+.app-shell.color-dark .setting-card select {
+  background-color: var(--filter-input-bg);
+  color: var(--filter-text);
+  border-color: var(--filter-input-border);
+}
+
+.app-shell.color-dark .setting-row select option,
+.app-shell.color-dark .setting-card select option {
+  background-color: #121a27;
+  color: #f4f8fc;
+}
+
+.app-shell.color-dark .setting-card span,
+.app-shell.color-dark .settings-group-title p {
+  color: var(--text-muted);
+}
+
+.app-shell.color-dark .setting-card strong {
+  color: var(--text-main);
+}
+
+/* ── Dark mode: CW market brief panel ── */
+.app-shell.color-dark .hero-market-panel {
+  background:
+    radial-gradient(circle at 92% 8%, rgba(255, 122, 24, 0.14), transparent 42%),
+    radial-gradient(circle at 8% 92%, rgba(52, 208, 176, 0.1), transparent 40%),
+    linear-gradient(180deg, rgba(20, 28, 42, 0.98), rgba(12, 18, 28, 0.99));
+  border-color: rgba(255, 122, 24, 0.22);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.app-shell.color-dark .hero-market-panel .market-visual {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    rgba(14, 22, 34, 0.55);
+  background-size: 24px 24px, 24px 24px, auto;
+}
+
+.app-shell.color-dark .hero-market-panel .panel-header {
+  color: #f4f8fc;
+  border-bottom-color: rgba(255, 122, 24, 0.22);
+  background: rgba(255, 122, 24, 0.07);
+}
+
+.app-shell.color-dark .hero-market-panel .link-button {
+  background: rgba(255, 122, 24, 0.14) !important;
+  color: #ffb366 !important;
+  border-color: rgba(255, 122, 24, 0.35) !important;
+}
+
+.app-shell.color-dark .hero-market-panel .link-button:hover {
+  background: var(--accent-primary) !important;
+  color: #121722 !important;
+  box-shadow: 0 4px 12px rgba(255, 122, 24, 0.35) !important;
+}
+
+.app-shell.color-dark .signal-section-label {
+  color: #ffb366;
+}
+
+.app-shell.color-dark .signal-section-line {
+  background: linear-gradient(90deg, transparent, rgba(255, 122, 24, 0.45), transparent);
+}
+
+.app-shell.color-dark .brief-item {
+  background: rgba(20, 28, 42, 0.96);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.app-shell.color-dark .brief-item:hover {
+  border-color: rgba(255, 122, 24, 0.42);
+  box-shadow: 0 8px 22px rgba(255, 122, 24, 0.14);
+}
+
+.app-shell.color-dark .market-tile-row .market-tile {
+  background: rgba(20, 28, 42, 0.92);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.app-shell.color-dark .market-tile-row .market-tile span {
+  color: #94a3b8;
+}
+
+.app-shell.color-dark .market-tile.highlight {
+  background:
+    linear-gradient(135deg, rgba(255, 122, 24, 0.16), rgba(52, 208, 176, 0.1)),
+    rgba(20, 28, 42, 0.95);
+  border-color: rgba(255, 122, 24, 0.35);
+  box-shadow:
+    0 10px 24px rgba(255, 122, 24, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}

@@ -16,8 +16,8 @@ export const NAV_ITEMS = {
 };
 
 export const DEFAULT_PREFERENCES = {
-  theme: "soft",
-  colorMode: "light",
+  theme: "clear",
+  colorMode: "dark",
   density: "comfortable",
   smoothMotion: true,
   tableHints: true,

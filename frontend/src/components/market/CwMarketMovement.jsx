@@ -99,24 +99,26 @@ export function CwMarketMovement({
               : (isEnglish ? "All active warrants" : "Hiển thị toàn bộ mã CW đang hoạt động")}
           </small>
         </div>
-        <div className="header-controls" style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
-          <div className="segment-control" style={{ display: "flex", background: "var(--bg-card, rgba(0,0,0,0.06))", padding: "3px", borderRadius: "8px", border: "1px solid var(--border-light, rgba(0,0,0,0.08))" }}>
-            <Button
-              variant={basket === "all" ? "primary" : "ghost"}
-              size="sm"
+        <div className="header-controls">
+          <div className="cw-basket-segment" role="tablist" aria-label={isEnglish ? "CW basket filter" : "Bộ lọc rổ CW"}>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={basket === "all"}
+              className={basket === "all" ? "active" : ""}
               onClick={() => setBasket("all")}
-              style={{ padding: "0.25rem 0.75rem", fontSize: "0.78rem", height: "26px", borderRadius: "6px", fontWeight: 600 }}
             >
               {isEnglish ? "All" : "Toàn thị trường"}
-            </Button>
-            <Button
-              variant={basket === "vn30" ? "primary" : "ghost"}
-              size="sm"
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={basket === "vn30"}
+              className={basket === "vn30" ? "active" : ""}
               onClick={() => setBasket("vn30")}
-              style={{ padding: "0.25rem 0.75rem", fontSize: "0.78rem", height: "26px", borderRadius: "6px", fontWeight: 600 }}
             >
               VN30
-            </Button>
+            </button>
           </div>
           <Button variant="secondary" onClick={onRefresh} disabled={loading} style={{ height: "32px", padding: "0 0.75rem" }}>
             <RefreshCw size={14} />

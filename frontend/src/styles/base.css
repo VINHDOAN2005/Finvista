@@ -3,13 +3,12 @@
   font-family:
     "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  background: var(--surface-bg, #f8fafc);
+  background: var(--surface-bg, #eef2f7);
   color: var(--text-main, #0f172a);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  /* Inter variable axes */
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11", "tnum", "lnum";
 }
 
 html {
@@ -41,14 +40,14 @@ button {
 .app-shell {
   min-height: 100vh;
   background:
-    radial-gradient(circle at top left, rgba(255, 122, 24, 0.08), transparent 24%),
+    radial-gradient(circle at top left, rgba(255, 122, 24, 0.06), transparent 24%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.82), transparent 45%),
-    var(--surface-bg, #f8fafc);
+    var(--surface-bg, #eef2f7);
 }
 
 .app-shell.theme-clear {
   background:
-    linear-gradient(115deg, rgba(15, 118, 110, 0.05), transparent 24%),
+    linear-gradient(115deg, rgba(255, 122, 24, 0.04), transparent 24%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.7), transparent 48%);
 }
 
@@ -103,8 +102,8 @@ button {
   width: 2.45rem;
   height: 2.45rem;
   place-items: center;
-  border-radius: 0.75rem;
-  background: #0f766e;
+  border-radius: 0.65rem;
+  background: linear-gradient(135deg, #ff7a18, #0ea5e9);
   color: #ffffff;
   font-weight: 800;
 }

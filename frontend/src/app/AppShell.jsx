@@ -81,19 +81,17 @@ export function AppShell() {
         </button>
 
         <div className="topbar-actions">
-          {page !== "intro" ? (
-            <nav aria-label="Main navigation">
-              {currentNavItems.map((item) => (
-                <button
-                  key={item.id}
-                  className={page === item.id ? "active" : ""}
-                  onClick={() => setPage(item.id)}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </nav>
-          ) : null}
+          <nav aria-label="Main navigation">
+            {currentNavItems.map((item) => (
+              <button
+                key={item.id}
+                className={page === item.id ? "active" : ""}
+                onClick={() => setPage(item.id)}
+              >
+                {item.label}
+              </button>
+            ))}
+          </nav>
           <ProfileMenu
             auth={auth}
             language={language}

@@ -408,8 +408,9 @@ export function MarketPage({ setPage, setSelectedSymbol, language = "en" }) {
         <>
       <div className="market-content-grid">
         <article className="market-workbench-card stock-board-card">
-          <CardHeading title={text.stockTable} help={activeSector ? displayIndustry(activeSector, language) : text.allSectors} />
-          <div className="market-board-tools">
+          <div className="market-board-header-sync">
+            <CardHeading title={text.stockTable} help={activeSector ? displayIndustry(activeSector, language) : text.allSectors} />
+            <div className="market-board-tools">
             <label className="market-search">
               <Search size={16} />
               <input
@@ -458,6 +459,7 @@ export function MarketPage({ setPage, setSelectedSymbol, language = "en" }) {
                 </button>
               ))}
             </div>
+          </div>
           </div>
           <div ref={stockTableDrag.ref} className="market-table-scroll stock-table-scroll draggable-table" {...stockTableDrag.dragProps}>
             <table className="market-stock-table">
@@ -510,7 +512,7 @@ export function MarketPage({ setPage, setSelectedSymbol, language = "en" }) {
         </article>
 
         <article className="market-workbench-card news-board-card">
-          <CardHeading title={text.companyNews} help={text.newsHelp} icon={<Newspaper size={17} />} />
+          <CardHeading title={text.companyNews} help={text.newsHelp} icon={<Newspaper size={17} />} stacked />
           <div className="news-list">
             {!news.length ? <div className="market-empty-state">{text.noNews}</div> : null}
             {news.map((item, index) => (
@@ -564,9 +566,9 @@ function MarketKpi({ icon, label, value }) {
 }
 
 
-function CardHeading({ title, help, icon = null }) {
+function CardHeading({ title, help, icon = null, stacked = false }) {
   return (
-    <div className="market-card-heading">
+    <div className={`market-card-heading${stacked ? " market-card-heading--stacked" : ""}`}>
       <div>{icon}<strong>{title}</strong></div>
       <small>{help}</small>
     </div>

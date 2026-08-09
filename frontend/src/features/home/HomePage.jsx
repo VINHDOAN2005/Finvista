@@ -91,7 +91,8 @@ export function HomePage({ setPage, setSelectedSymbol, language }) {
   }
 
   return (
-    <section className="intro-grid hero-layout finvista-hero">
+    <section className="page-section home-page">
+      <div className="intro-grid hero-layout finvista-hero">
       <div className="hero-atmosphere" aria-hidden="true">
         <span className="hero-orbit-core" />
         <span className="hero-scan-plane" />
@@ -266,6 +267,7 @@ export function HomePage({ setPage, setSelectedSymbol, language }) {
           }
           onClick={() => setPage("credit")}
         />
+      </div>
       </div>
     </section>
   );

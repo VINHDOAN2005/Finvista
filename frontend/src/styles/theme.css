@@ -1,60 +1,56 @@
-/* Rose quant theme: attractive pastel palette with finance-grade contrast and trading-state clarity. */
+/* Finvista terminal theme — FireAnt / vnstock inspired finance workspace */
 :root {
-  --rose-100: #f8dae9;
-  --rose-200: #f4c2d7;
-  --rose-300: #efb0c9;
-  --sky-200: #b9d6f3;
-  --sky-300: #a1c9f1;
-  --cream-100: #f1e8d9;
-  --surface-bg: #fbf6f9;
-  --surface-panel: #fffafd;
-  --surface-muted: #f8f2f6;
-  --border-soft: #ead5df;
-  --border-strong: #dcaec4;
-  --text-main: #261827;
-  --text-muted: #756574;
-  --accent-primary: #b34a7d;
-  --accent-primary-hover: #96376a;
-  --accent-cyan: #4b83b8;
-  --accent-sky: #5a9bd2;
+  --terminal-grid: rgba(148, 163, 184, 0.22);
+  --terminal-grid-strong: rgba(100, 116, 139, 0.32);
+  --surface-bg: #eef2f7;
+  --surface-panel: #ffffff;
+  --surface-muted: #f8fafc;
+  --border-soft: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --accent-primary: #ff7a18;
+  --accent-primary-hover: #e56a0f;
+  --accent-cyan: #0ea5e9;
+  --accent-sky: #38bdf8;
   --buy: #008b7a;
-  --sell: #d94a6f;
-  --warning: #aa6a00;
-  --shadow-panel: 0 12px 30px rgba(75, 42, 63, 0.08);
-  --shadow-hover: 0 16px 36px rgba(75, 42, 63, 0.12);
-  --tooltip-bg: rgba(255, 250, 253, 0.98);
-  --tooltip-border: #efb0c9;
-  --tooltip-text: #261827;
-  --tooltip-muted: #756574;
-  --tooltip-shadow: 0 12px 26px rgba(75, 42, 63, 0.16);
-  --filter-card-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(250, 246, 249, 0.96));
-  --filter-card-border: #e7dce4;
-  --filter-card-shadow: 0 10px 24px rgba(75, 42, 63, 0.06);
-  --filter-text: #2f2430;
-  --filter-muted: #796776;
-  --filter-input-bg: #fffdfd;
-  --filter-input-border: #dcced7;
-  --filter-input-focus: #b34a7d;
-  --filter-focus-ring: rgba(179, 74, 125, 0.14);
-  --filter-placeholder: #9f8798;
-  --filter-arrow: #5b6472;
+  --sell: #dc2626;
+  --warning: #d97706;
+  --shadow-panel: 0 1px 2px rgba(15, 23, 42, 0.05), 0 8px 24px rgba(15, 23, 42, 0.07);
+  --shadow-hover: 0 4px 12px rgba(15, 23, 42, 0.08), 0 16px 32px rgba(15, 23, 42, 0.1);
+  --tooltip-bg: rgba(255, 255, 255, 0.98);
+  --tooltip-border: #e2e8f0;
+  --tooltip-text: #0f172a;
+  --tooltip-muted: #64748b;
+  --tooltip-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+  --filter-card-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.96));
+  --filter-card-border: #e2e8f0;
+  --filter-card-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+  --filter-text: #1e293b;
+  --filter-muted: #64748b;
+  --filter-input-bg: #ffffff;
+  --filter-input-border: #cbd5e1;
+  --filter-input-focus: #ff7a18;
+  --filter-focus-ring: rgba(255, 122, 24, 0.18);
+  --filter-placeholder: #94a3b8;
+  --filter-arrow: #64748b;
   --filter-chip-bg: #ffffff;
-  --filter-chip-border: #e8dce4;
-  --filter-chip-hover: #fff4f9;
-  --filter-chip-active-bg: #fff3f8;
-  --filter-chip-active-text: #b34a7d;
+  --filter-chip-border: #e2e8f0;
+  --filter-chip-hover: #fff7ed;
+  --filter-chip-active-bg: rgba(255, 122, 24, 0.12);
+  --filter-chip-active-text: #c2410c;
   --control-bg: #ffffff;
-  --control-bg-muted: #fcf8fb;
-  --control-bg-hover: #fff4f9;
-  --control-bg-active: linear-gradient(135deg, rgba(179, 74, 125, 0.16), rgba(90, 155, 210, 0.12));
-  --control-border: #dfcfe0;
-  --control-border-strong: #c6a9bb;
-  --control-text: #1f2937;
-  --control-muted: #667085;
-  --control-accent: #b34a7d;
-  --control-accent-hover: #96376a;
-  --control-focus-ring: rgba(179, 74, 125, 0.16);
-  --control-shadow: 0 8px 18px rgba(75, 42, 63, 0.06);
+  --control-bg-muted: #f8fafc;
+  --control-bg-hover: #fff7ed;
+  --control-bg-active: linear-gradient(135deg, rgba(255, 122, 24, 0.14), rgba(14, 165, 233, 0.1));
+  --control-border: #e2e8f0;
+  --control-border-strong: #cbd5e1;
+  --control-text: #1e293b;
+  --control-muted: #64748b;
+  --control-accent: #ff7a18;
+  --control-accent-hover: #e56a0f;
+  --control-focus-ring: rgba(255, 122, 24, 0.2);
+  --control-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
 }
 
 body {
@@ -64,9 +60,14 @@ body {
 .app-shell,
 .app-shell.theme-clear {
   background:
-    linear-gradient(120deg, rgba(239, 176, 201, 0.32) 0%, transparent 32%),
-    linear-gradient(250deg, rgba(161, 201, 241, 0.28) 0%, transparent 34%),
-    linear-gradient(180deg, #fffafd 0%, var(--surface-bg) 45%, #f7eef3 100%);
+    linear-gradient(180deg, #f8fafc 0%, var(--surface-bg) 55%, #e8edf4 100%);
+}
+
+.app-shell.theme-soft {
+  background:
+    radial-gradient(circle at 12% 0%, rgba(255, 122, 24, 0.06), transparent 32%),
+    radial-gradient(circle at 88% 8%, rgba(14, 165, 233, 0.05), transparent 28%),
+    linear-gradient(180deg, #f8fafc 0%, var(--surface-bg) 100%);
 }
 
 .topbar {
@@ -105,7 +106,7 @@ label {
 
 .brand-mark {
   border-radius: 0.5rem;
-  background: linear-gradient(135deg, #96376a, #5a9bd2);
+  background: linear-gradient(135deg, #ff7a18, #0ea5e9);
   box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.18);
 }
 
@@ -116,21 +117,21 @@ label {
 
 .brand-eyebrow,
 .link-button {
-  border-color: var(--rose-300);
-  background: var(--rose-100);
-  color: #87365f;
+  border-color: rgba(255, 122, 24, 0.28);
+  background: rgba(255, 122, 24, 0.08);
+  color: #c2410c;
 }
 
 nav button {
-  border-radius: 0.5rem;
-  color: #475467;
+  border-radius: 0.45rem;
+  color: var(--text-muted);
 }
 
 nav button:hover,
 nav button.active {
-  border-color: var(--rose-300);
-  background: #fff4f9;
-  color: #87365f;
+  border-color: rgba(255, 122, 24, 0.35);
+  background: rgba(255, 122, 24, 0.08);
+  color: #c2410c;
 }
 
 .icon-button {
@@ -170,11 +171,9 @@ nav button.active {
 .intro-copy,
 .market-panel,
 .system-panel,
-.cw-movement-panel,
-.page-section {
-  background:
-    linear-gradient(180deg, rgba(255, 250, 253, 0.96), rgba(255, 255, 255, 0.94)),
-    var(--surface-panel);
+.page-section,
+.cw-movement-panel {
+  background: var(--surface-panel);
 }
 
 .feature-card:hover,
@@ -191,17 +190,17 @@ nav button.active {
 .flow-stack,
 .cw-movement-panel {
   background:
-    linear-gradient(rgba(234, 213, 223, 0.7) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(185, 214, 243, 0.55) 1px, transparent 1px),
-    #fffafd;
+    linear-gradient(var(--terminal-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--terminal-grid) 1px, transparent 1px),
+    var(--surface-muted);
   background-size: 24px 24px;
 }
 
 .market-tile.highlight {
-  border-color: var(--rose-300);
+  border-color: rgba(255, 122, 24, 0.35);
   background:
-    linear-gradient(135deg, rgba(248, 218, 233, 0.62), rgba(185, 214, 243, 0.34)),
-    #ffffff;
+    linear-gradient(135deg, rgba(255, 122, 24, 0.08), rgba(14, 165, 233, 0.06)),
+    var(--surface-panel);
 }
 
 .market-tile.highlight.danger,
@@ -230,24 +229,20 @@ nav button.active {
 }
 
 .movement-card {
-  background:
-    linear-gradient(180deg, rgba(255, 244, 249, 0.82), rgba(255, 255, 255, 0.64)),
-    rgba(255, 255, 255, 0.72);
+  background: var(--surface-panel);
 }
 
 .cw-heatmap button {
-  background:
-    linear-gradient(135deg, rgba(215, 205, 20, 0.34), rgba(248, 218, 233, 0.32)),
-    #fff8fb;
+  background: var(--surface-muted);
 }
 
 .mini-chart {
-  background: #ffffff;
+  background: var(--surface-panel);
 }
 
 .mini-chart i {
   border-radius: 0.25rem 0.25rem 0.1rem 0.1rem;
-  background: linear-gradient(180deg, #b34a7d, #5a9bd2);
+  background: linear-gradient(180deg, #ff7a18, #0ea5e9);
   box-shadow: none;
 }
 
@@ -256,13 +251,13 @@ nav button.active {
   border-color: var(--accent-primary);
   background: var(--accent-primary);
   color: #ffffff;
-  box-shadow: 0 10px 22px rgba(179, 74, 125, 0.18);
+  box-shadow: 0 8px 20px rgba(255, 122, 24, 0.22);
 }
 
 .primary-button:hover,
 .ui-button-default:hover {
   background: var(--accent-primary-hover);
-  box-shadow: 0 12px 26px rgba(179, 74, 125, 0.24);
+  box-shadow: 0 10px 24px rgba(255, 122, 24, 0.28);
 }
 
 .secondary-button,
@@ -370,19 +365,19 @@ select:focus {
 }
 
 .notice.info {
-  border-color: var(--rose-200);
-  background: #fff2f8;
-  color: #87365f;
+  border-color: rgba(255, 122, 24, 0.28);
+  background: #fff7ed;
+  color: #c2410c;
 }
 
 .table-wrap {
-  background: #ffffff;
+  background: var(--surface-panel);
   box-shadow: none;
 }
 
 th {
-  background: #f8f2f6;
-  color: #695567;
+  background: var(--surface-muted);
+  color: var(--text-muted);
   font-size: 0.74rem;
 }
 
@@ -478,7 +473,7 @@ tbody tr:hover .strong-cell {
   --filter-arrow: #cbd5e1;
   --filter-chip-bg: rgba(15, 23, 42, 0.72);
   --filter-chip-border: rgba(71, 85, 105, 0.72);
-  --filter-chip-hover: rgba(224, 106, 162, 0.13);
+  --filter-chip-hover: rgba(255, 122, 24, 0.12);
   --filter-chip-active-bg: rgba(99, 102, 241, 0.16);
   --filter-chip-active-text: #dbeafe;
   --control-bg: #0f1720;
@@ -562,7 +557,7 @@ tbody tr:hover .strong-cell {
 
 .segmented-control button.active {
   background: var(--accent-primary);
-  color: #ffffff;
+  color: #121722;
 }
 
 .toggle-line input {
@@ -611,7 +606,7 @@ tbody tr:hover .strong-cell {
   --filter-placeholder: rgba(148, 163, 184, 0.85);
   --filter-chip-bg: rgba(15, 23, 42, 0.72);
   --filter-chip-border: rgba(71, 85, 105, 0.72);
-  --filter-chip-hover: rgba(224, 106, 162, 0.13);
+  --filter-chip-hover: rgba(255, 122, 24, 0.12);
   --filter-chip-active-bg: rgba(99, 102, 241, 0.16);
   --filter-chip-active-text: #dbeafe;
   color: var(--text-main);
@@ -825,11 +820,25 @@ tbody tr:hover .strong-cell {
   color: #d8dee8;
 }
 
-.app-shell.color-dark :where(.secondary-button, .ui-button-secondary, .chart-toolbar button, .segmented-control, input, select, .preset-chip, .market-sort-tabs),
+.app-shell.color-dark :where(.secondary-button, .ui-button-secondary, .ui-button-ghost, .chart-toolbar button, .segmented-control, .cw-basket-segment, input, select, .preset-chip, .market-sort-tabs),
 .login-shell.color-dark :where(input, select) {
   border-color: var(--border-soft);
   background: linear-gradient(180deg, #111b2a 0%, #0f1723 100%);
   color: var(--text-main);
+}
+
+.app-shell.color-dark .ui-button-ghost {
+  color: var(--text-main);
+}
+
+.app-shell.color-dark .cw-basket-segment button {
+  color: #eef2f7;
+}
+
+.app-shell.color-dark .cw-basket-segment button:hover,
+.app-shell.color-dark .cw-basket-segment button.active {
+  background: rgba(255, 122, 24, 0.16);
+  color: #ffb070;
 }
 
 .app-shell.color-dark :where(.table-wrap, .chart-card, .metric-card, .feature-card, .ratio-item, .setting-card, .market-tile, .brief-item, .mini-chart, .page-section, .market-panel, .system-panel, .movement-card, .filters, .quick-filters, .filter-presets) {
@@ -847,7 +856,7 @@ tbody tr:hover .strong-cell {
 .app-shell.color-dark :where(.secondary-button:hover, .ui-button-secondary:hover, .ui-button-ghost:hover, .chart-toolbar button:hover, .preset-chip button:hover, .market-sort-tabs button:hover, .market-sort-tabs button.active),
 .login-shell.color-dark .login-button:hover {
   border-color: var(--accent-primary);
-  background: rgba(224, 106, 162, 0.13);
+  background: rgba(255, 122, 24, 0.12);
   color: var(--accent-primary);
 }
 
@@ -974,6 +983,12 @@ tbody tr:hover .strong-cell {
   color: #a8f5df;
 }
 
+.app-shell.color-dark .news-item a,
+.app-shell.color-dark .news-item .news-title-link,
+.app-shell.color-dark .news-item .news-title-link:hover {
+  background: transparent;
+}
+
 .app-shell.color-dark :where(.news-list, .brief-list, .market-table-scroll, .table-wrap) {
   scrollbar-color: #5f6b7f #121722;
 }
@@ -997,7 +1012,7 @@ tbody tr:hover .strong-cell {
 
 .app-shell.color-dark .kpi-group-heading span {
   background: transparent;
-  color: var(--text-main);
+  color: var(--accent-primary);
 }
 
 .app-shell.color-dark .kpi-group-heading p {
@@ -1007,13 +1022,13 @@ tbody tr:hover .strong-cell {
 
 .app-shell.color-dark .description-box {
   border-left-color: var(--accent-primary);
-  background: rgba(224, 106, 162, 0.1);
+  background: rgba(255, 122, 24, 0.08);
   color: var(--text-main);
 }
 
 .app-shell.color-dark :where(.profile-popover-head, .admin-card) {
   background:
-    linear-gradient(135deg, rgba(224, 106, 162, 0.18), rgba(90, 155, 210, 0.12)),
+    linear-gradient(135deg, rgba(255, 122, 24, 0.14), rgba(14, 165, 233, 0.1)),
     #171d27;
 }
 
@@ -1024,10 +1039,16 @@ tbody tr:hover .strong-cell {
 }
 
 /* 🔧 FIREANT-LIKE DARK MODE OVERRIDES */
-.app-shell.color-dark :where(.brand-eyebrow, .link-button, .kpi-group-heading span, .news-item .news-title-link:hover, .news-item a, .hero-metric > span, .market-search-suggestions button:hover, .suggestion-chip:hover, .cw-heatmap button:hover) {
-  border-color: rgba(47, 142, 247, 0.28);
-  background: rgba(47, 142, 247, 0.12);
-  color: #dcefff;
+.app-shell.color-dark :where(.brand-eyebrow, .link-button, .market-search-suggestions button:hover, .suggestion-chip:hover, .cw-heatmap button:hover) {
+  border-color: rgba(255, 122, 24, 0.28);
+  background: rgba(255, 122, 24, 0.12);
+  color: #ffb366;
+}
+
+.app-shell.color-dark :where(.hero-metric > span) {
+  border-color: rgba(255, 122, 24, 0.22);
+  background: rgba(255, 122, 24, 0.1);
+  color: #ffb366;
 }
 
 .app-shell.color-dark :where(.market-tile.highlight, .brief-item.success, .brief-item.danger, .hero-metric > span, .market-search-suggestions button:hover, .suggestion-chip:hover) {
@@ -1158,16 +1179,16 @@ tbody tr:hover .strong-cell {
 }
 
 .app-shell.color-dark .brief-item {
-  background: rgba(22, 26, 34, 0.75);
+  background: rgba(20, 28, 42, 0.96);
   backdrop-filter: blur(12px);
-  border-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
   color: var(--text-main);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
 }
 
 .app-shell.color-dark .brief-item:hover {
-  border-color: rgba(224, 106, 162, 0.45);
-  box-shadow: 0 8px 24px rgba(224, 106, 162, 0.18);
+  border-color: rgba(255, 122, 24, 0.42);
+  box-shadow: 0 8px 24px rgba(255, 122, 24, 0.14);
   transform: translateY(-2px);
 }
 
@@ -1199,27 +1220,27 @@ tbody tr:hover .strong-cell {
   color: #f36b8a;
 }
 
-/* 🌌 FUTURISTIC GLOW FOR HERO MARKET PANEL (RIGHT SIDE) */
+/* 🌌 HERO MARKET PANEL — dark terminal */
 .app-shell.color-dark .hero-market-panel {
-  background: 
-    radial-gradient(circle at 90% 10%, rgba(224, 106, 162, 0.18), transparent 45%),
-    radial-gradient(circle at 10% 90%, rgba(90, 155, 210, 0.14), transparent 45%),
-    linear-gradient(180deg, rgba(22, 26, 35, 0.95), rgba(15, 18, 24, 0.98));
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 
+  background:
+    radial-gradient(circle at 90% 10%, rgba(255, 122, 24, 0.14), transparent 45%),
+    radial-gradient(circle at 10% 90%, rgba(52, 208, 176, 0.1), transparent 45%),
+    linear-gradient(180deg, rgba(20, 28, 42, 0.98), rgba(12, 18, 28, 0.99));
+  border: 1px solid rgba(255, 122, 24, 0.2);
+  box-shadow:
     0 24px 48px rgba(0, 0, 0, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-/* ⚡️ SCI-FI SHINE & GLOW FOR THE TOP SIGNAL CARD */
+/* ⚡️ TOP SIGNAL highlight tile */
 .app-shell.color-dark .market-tile.highlight {
-  background: 
-    linear-gradient(135deg, rgba(224, 106, 162, 0.22), rgba(90, 155, 210, 0.2)),
-    rgba(22, 26, 34, 0.9);
-  border: 1px solid rgba(224, 106, 162, 0.45);
-  box-shadow: 
-    0 12px 28px rgba(224, 106, 162, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  background:
+    linear-gradient(135deg, rgba(255, 122, 24, 0.16), rgba(52, 208, 176, 0.1)),
+    rgba(20, 28, 42, 0.95);
+  border: 1px solid rgba(255, 122, 24, 0.35);
+  box-shadow:
+    0 12px 28px rgba(255, 122, 24, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
   position: relative;
   overflow: hidden;
 }
@@ -1249,21 +1270,21 @@ tbody tr:hover .strong-cell {
 
 /* 🏷️ LINK BUTTON AS GLOWING PILL */
 .app-shell.color-dark .hero-market-panel .link-button {
-  background: rgba(224, 106, 162, 0.15) !important;
-  color: var(--accent-primary) !important;
-  border: 1px solid rgba(224, 106, 162, 0.3) !important;
+  background: rgba(255, 122, 24, 0.14) !important;
+  color: #ffb366 !important;
+  border: 1px solid rgba(255, 122, 24, 0.32) !important;
   padding: 0.25rem 0.75rem !important;
   border-radius: 999px !important;
   font-size: 0.75rem !important;
   font-weight: 700 !important;
   transition: all 0.2s ease !important;
-  box-shadow: 0 0 0 0 rgba(224, 106, 162, 0);
+  box-shadow: 0 0 0 0 rgba(255, 122, 24, 0);
 }
 
 .app-shell.color-dark .hero-market-panel .link-button:hover {
   background: var(--accent-primary) !important;
   color: #121722 !important;
-  box-shadow: 0 4px 12px rgba(224, 106, 162, 0.35) !important;
+  box-shadow: 0 4px 12px rgba(255, 122, 24, 0.35) !important;
   transform: translateY(-1px);
 }
 
@@ -1312,8 +1333,8 @@ tbody tr:hover .strong-cell {
 }
 
 .app-shell.color-dark .market-tile-row .market-tile {
-  background: rgba(22, 26, 34, 0.78);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(20, 28, 42, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .app-shell.color-dark .market-tile-row .market-tile:first-child strong {
