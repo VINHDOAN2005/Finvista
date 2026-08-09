@@ -218,9 +218,8 @@ export function HomePage({ setPage, setSelectedSymbol, language }) {
                 <span className="signal-section-label">{isEnglish ? "TOP SIGNAL" : "TÍN HIỆU NỔI BẬT"}</span>
                 <span className="signal-section-line" />
               </div>
-              <SignalCard signal={topSignal} featured isEnglish={isEnglish} onClick={() => openWarrantDetail(topSignal.warrant_symbol)} />
               <div className="brief-list">
-                {signals.slice(1).map((signal) => (
+                {signals.map((signal) => (
                   <SignalCard
                     key={signal.warrant_symbol}
                     signal={signal}

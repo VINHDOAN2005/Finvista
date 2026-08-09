@@ -78,6 +78,10 @@
     grid-template-columns: 1fr;
   }
 
+  .detail-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .preset-actions {
     justify-content: flex-start;
   }

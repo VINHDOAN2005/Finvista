@@ -709,6 +709,60 @@ tbody tr:hover .strong-cell {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
+.app-shell.color-dark .credit-hero-card,
+.app-shell.color-dark .credit-probability-card,
+.app-shell.color-dark .distress-row,
+.app-shell.color-dark .advisory-banner {
+  border-color: rgba(148, 163, 184, 0.24);
+  background: linear-gradient(180deg, rgba(16, 25, 36, 0.98), rgba(10, 17, 27, 0.96));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04), var(--shadow-panel);
+}
+
+.app-shell.color-dark .credit-hero-card {
+  border-color: rgba(255, 122, 24, 0.24);
+  background: linear-gradient(135deg, rgba(21, 31, 46, 0.98), rgba(10, 17, 27, 0.98));
+}
+
+.app-shell.color-dark .credit-hero-main h3,
+.app-shell.color-dark .credit-hero-main p,
+.app-shell.color-dark .credit-hero-meta,
+.app-shell.color-dark .probability-label,
+.app-shell.color-dark .probability-values span,
+.app-shell.color-dark .distress-row-head,
+.app-shell.color-dark .advisory-banner p {
+  color: var(--text-muted);
+}
+
+.app-shell.color-dark .credit-hero-main h3,
+.app-shell.color-dark .probability-values strong,
+.app-shell.color-dark .distress-row span:not(.signal-pill) {
+  color: var(--text-main);
+}
+
+.app-shell.color-dark .status-pill.success,
+.app-shell.color-dark .signal-pill.success,
+.app-shell.color-dark .advisory-banner.success {
+  border-color: rgba(52, 208, 176, 0.3);
+  background: rgba(52, 208, 176, 0.16);
+  color: #9cf0da;
+}
+
+.app-shell.color-dark .status-pill.warning,
+.app-shell.color-dark .signal-pill.warning,
+.app-shell.color-dark .advisory-banner.warning {
+  border-color: rgba(242, 176, 74, 0.32);
+  background: rgba(242, 176, 74, 0.16);
+  color: #ffd8a8;
+}
+
+.app-shell.color-dark .status-pill.danger,
+.app-shell.color-dark .signal-pill.danger,
+.app-shell.color-dark .advisory-banner.danger {
+  border-color: rgba(255, 107, 143, 0.32);
+  background: rgba(255, 107, 143, 0.16);
+  color: #ffc1d0;
+}
+
 .app-shell.color-dark :where(.movement-card-title span, .pie-legend span, .flow-row, .movement-header small) {
   color: #c3ccda;
 }
@@ -938,13 +992,16 @@ tbody tr:hover .strong-cell {
 
 .app-shell.color-dark .kpi-group-heading {
   border-bottom-color: var(--border-soft);
+  background: transparent;
 }
 
 .app-shell.color-dark .kpi-group-heading span {
-  color: #ffc9e2;
+  background: transparent;
+  color: var(--text-main);
 }
 
 .app-shell.color-dark .kpi-group-heading p {
+  background: transparent;
   color: var(--text-muted);
 }
 
