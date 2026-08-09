@@ -848,7 +848,6 @@ h3 {
 }
 
 .signal-card-ticker {
-  color: #0f172a;
   font-size: 1.05rem;
   font-weight: 800;
   line-height: 1.1;
@@ -867,7 +866,7 @@ h3 {
 }
 
 .signal-card-metric-label {
-  color: #64748b;
+  color: #008b7a;
   font-size: 0.67rem;
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -875,9 +874,44 @@ h3 {
 }
 
 .signal-card-metric strong {
-  color: #0f172a;
+  color: var(--text-main, #0f172a);
   font-size: 0.84rem;
   font-weight: 700;
+}
+
+.brief-item.signal-card .signal-card-ticker {
+  color: var(--text-main, #0f172a);
+}
+
+.app-shell.color-dark .brief-item.signal-card .signal-card-metric-label {
+  color: #48d6b5;
+}
+
+.app-shell.color-dark .brief-item.signal-card .signal-card-ticker,
+.app-shell.color-dark .brief-item.signal-card .signal-card-metric strong {
+  color: var(--text-main);
+}
+
+.brief-item.success.signal-card .signal-card-status.buy,
+.brief-item.success.signal-card .signal-card-status.mua {
+  color: #047857;
+}
+
+.app-shell.color-dark .brief-item.success.signal-card .signal-card-status.buy,
+.app-shell.color-dark .brief-item.success.signal-card .signal-card-status.mua {
+  color: #48d6b5;
+}
+
+.brief-item.danger.signal-card .signal-card-ticker,
+.brief-item.danger.signal-card .signal-card-status,
+.brief-item.danger.signal-card .signal-card-metric strong {
+  color: #991b1b;
+}
+
+.app-shell.color-dark .brief-item.danger.signal-card .signal-card-ticker,
+.app-shell.color-dark .brief-item.danger.signal-card .signal-card-status,
+.app-shell.color-dark .brief-item.danger.signal-card .signal-card-metric strong {
+  color: #f36b8a;
 }
 
 .signal-card-featured {
@@ -1423,10 +1457,6 @@ h3 {
 }
 
 .credit-metric-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.quality-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
@@ -2106,7 +2136,7 @@ code {
 }
 
 .ratio-item {
-  padding: 0.85rem;
+  padding: 1rem;
 }
 
 .ratio-item span {
@@ -2130,6 +2160,34 @@ code {
 
 .ratio-item.danger {
   border-color: rgba(220, 38, 38, 0.35);
+}
+
+.ratio-grid.quality-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 0;
+}
+
+.ratio-grid.quality-grid .ratio-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100%;
+  padding: 1rem;
+}
+
+.ratio-grid.quality-grid .ratio-item span {
+  margin-bottom: 0.5rem;
+  font-size: 0.88rem;
+}
+
+.ratio-grid.quality-grid .ratio-item strong {
+  margin-top: 0;
+  overflow-wrap: anywhere;
+  color: #ffffff;
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.15;
 }
 
 .distress-score-grid {

@@ -1184,8 +1184,8 @@ tbody tr:hover .strong-cell {
   background: linear-gradient(135deg, rgba(72, 214, 181, 0.1), rgba(20, 24, 32, 0.8));
 }
 
-.app-shell.color-dark .brief-item.success span,
-.app-shell.color-dark .brief-item.success strong {
+.app-shell.color-dark .brief-item.success:not(.signal-card) span,
+.app-shell.color-dark .brief-item.success:not(.signal-card) strong {
   color: #48d6b5;
 }
 
